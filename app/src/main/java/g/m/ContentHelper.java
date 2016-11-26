@@ -65,7 +65,7 @@ public class ContentHelper {
     public void loadAllImagesFromServer(final Context context) {
 
         for  (int i=0;i<Constants.total_levels;i++) {
-            Log.e("MemoryApp","Url is "+Constants.IMAGE_URL[i]);
+           // Log.e("MemoryApp","Url is "+Constants.IMAGE_URL[i]);
             Glide.with(context)
                     .load(Constants.IMAGE_URL[i])
                     .override(600, 200)

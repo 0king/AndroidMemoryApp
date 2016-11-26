@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
 
-public class MainActivity extends AppCompatActivity implements NetworkStateReceiverListener {
+public class MainActivity extends AppCompatActivity {
 
 	Button startBtn;
     ContentHelper server;
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity implements NetworkStateRecei
         PreferenceManager.get().init(this);
         int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
 
-        if(already_cached==0 && Utils.isNetworkAvailable(this)) {
+        Log.e("Memory_app","Cached Value "+already_cached+"network info "+Utils.isNetworkAvailable(this));
+
+        if( Utils.isNetworkAvailable(this)) {
             server = ContentHelper.getInstance();
             server.loadJsonFromServer();
 

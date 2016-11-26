@@ -110,6 +110,18 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 			case R.id.option1:
 				onButtonClickedListener.onButtonClicked(v.getId());
 				break;
+            case R.id.option2:
+                onButtonClickedListener.onButtonClicked(v.getId());
+                break;
+            case R.id.option3:
+                onButtonClickedListener.onButtonClicked(v.getId());
+                break;
+            case R.id.option4:
+                onButtonClickedListener.onButtonClicked(v.getId());
+                break;
+            case R.id.option5:
+                onButtonClickedListener.onButtonClicked(v.getId());
+                break;
 		}
 	}
 

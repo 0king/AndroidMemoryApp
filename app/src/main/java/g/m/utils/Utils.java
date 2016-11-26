@@ -22,7 +22,7 @@ public class Utils {
     }
 
     public static boolean isNetworkAvailable(Context context) {
-        return ((ConnectivityManager) context.getSystemService("connectivity")).getActiveNetworkInfo() != null;
+        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
     public static String getAppVersion(Context context) {
