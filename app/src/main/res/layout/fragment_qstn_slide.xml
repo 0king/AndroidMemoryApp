@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="g.m.QstnSlideFragment"
+    android:orientation="vertical"
+    android:background="@color/photoBackgroundColor"
+    android:padding="20dp">
+
+
+<!--    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hello beta ji"
+        style="?android:textAppearanceMedium"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="40dp"/>-->
+
+    <!-- todo change text styling -->
+
+    <TextView
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:padding="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/question"/>
+
+    <!-- todo increase gap b/w question and answer -->
+
+    <!-- todo button styling -->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/option1"/>
+
+    <Button
+        android:padding="10dp"
+        android:id="@+id/option2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/option3"/>
+    <Button
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/option4"/>
+    <Button
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/option5"/>
+
+</LinearLayout>

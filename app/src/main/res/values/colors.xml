@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8026e0</color>
+    <color name="colorPrimaryDark">#6b21ba</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="photoBackgroundColor">#a261e8</color>
+    <color name="button_bg_correct">#ff219b55</color>
+    <color name="button_bg_incorrect">#ffa53132</color>
+</resources>
