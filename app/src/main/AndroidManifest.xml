@@ -21,12 +21,18 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
+        <activity android:name=".VideoActivity">
+        </activity>
         <activity android:name=".PhotoActivity">
         </activity>
         <activity android:name=".QuestionsActivity">
         </activity>
         <activity android:name=".ResultActivity">
         </activity>
+        <activity android:name="com.adcolony.sdk.AdColonyInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name="com.adcolony.sdk.AdColonyAdViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>
