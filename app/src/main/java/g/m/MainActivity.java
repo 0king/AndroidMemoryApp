@@ -15,36 +15,12 @@ import g.m.utils.Utils;
 public class MainActivity extends AppCompatActivity {
 
 	Button startBtn;
-    ContentHelper server;
 
-    private class LoadFromServer extends AsyncTask {
-		@Override
-		protected Object doInBackground(Object[] objects) {
-
-            server.loadAllImagesFromServer(getApplicationContext());
-
-			return null;
-		}
-	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-        PreferenceManager.get().init(this);
-        int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
-
-        Log.e("Memory_app","Cached Value "+already_cached+"network info "+Utils.isNetworkAvailable(this));
-
-        if( Utils.isNetworkAvailable(this)) {
-            server = ContentHelper.getInstance();
-            server.loadJsonFromServer();
-
-            new LoadFromServer().execute();
-            PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
-
-        }else {
-            Toast.makeText(this, "Connect to Internet", Toast.LENGTH_SHORT).show();
-        }
+		ContentHelper.getInstance().loadLevelData();
 
 		startBtn = (Button) findViewById(R.id.startBtn);
 

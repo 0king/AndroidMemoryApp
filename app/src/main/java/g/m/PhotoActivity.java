@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -60,6 +61,8 @@ public class PhotoActivity extends AppCompatActivity {
 
     public void loadContent(){
 
+		Log.e("Memory_app","Current Lvel is "+server.getCurrentLevel());
+
         Glide.with(getApplicationContext())
                 .load(Constants.IMAGE_URL[server.getCurrentLevel()])
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -70,8 +73,6 @@ public class PhotoActivity extends AppCompatActivity {
         List<Question> questions = this.level.getQuestions();
         //Log.e("MemoryApp","Total questions in level is "+questions.size()+"and question is "+questions.get(1).getQuestion());
         QtsnData.setQuestions(questions);
-        server.loadLevelData();
-
 
     }
 }
