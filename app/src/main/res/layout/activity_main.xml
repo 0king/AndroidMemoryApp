@@ -7,27 +7,11 @@
     android:layout_height="match_parent"
     tools:context="g.m.MainActivity"
     android:background="@color/button_bg_correct"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal|center">
 
 
-    <Button
-        android:text="Start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:id="@+id/startBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/main_screen"
-        android:padding="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"
-        android:id="@+id/imageView" />
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
@@ -38,12 +22,63 @@
         ads:adUnitId="@string/banner_home_footer">
     </com.google.android.gms.ads.AdView>
 
+
     <Button
-        android:text="Earn Coins"
-        android:layout_width="50dp"
+        android:text="Start"
+        android:id="@+id/startBtn"
+        android:textColor="#141414"
+        android:textSize="20sp"
+
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:textColor="#fff"
-        android:id="@+id/button4" />
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_above="@+id/button4"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_alignStart="@+id/button4"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="monospace"></Button>
+
+    <Button
+        android:text="Free Coins"
+        android:textColor="#141414"
+        android:textSize="20sp"
+
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:id="@+id/button4"
+        android:layout_marginBottom="104dp"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="monospace" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/main_screen"
+        android:padding="10dp"
+        android:id="@+id/imageView"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_info"
+        android:textSize="36sp"
+        android:layout_marginTop="22dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/imageView"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="false"
+        android:layout_above="@+id/startBtn" />
 </RelativeLayout>

@@ -128,13 +128,13 @@ public class ContentHelper {
     }
 
     public void loadLevelData() {
-        this.currentLevel=0;
+        this.currentLevel = PreferenceManager.get().getInt(PreferenceManager.PREF_CURRENT_LEVEL, 1);
 
         this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel)).getQuestions().size());
         /*
         String levelData = PreferenceManager.get().getString(PreferenceManager.PREF_LEVEL_DATA, BuildConfig.FLAVOR);
         String qOrder = PreferenceManager.get().getString(PreferenceManager.PREF_QUESTIONS_ORDER, BuildConfig.FLAVOR);
-        this.currentLevel = PreferenceManager.get().getInt(PreferenceManager.PREF_CURRENT_LEVEL, 1);
+
         this.coinsCount = PreferenceManager.get().getInt(PreferenceManager.PREF_COINS_COUNT, 100);
         if (BuildConfig.FLAVOR.equals(levelData)) {
             this.timeLeft = 10;
@@ -158,14 +158,14 @@ public class ContentHelper {
     }
 
     public void saveLevelData() {
-        PreferenceManager.get().putString(PreferenceManager.PREF_LEVEL_DATA, this.timeLeft + "|" + this.currentQuestion + "|" + this.correctAnswers);
+       // PreferenceManager.get().putString(PreferenceManager.PREF_LEVEL_DATA, this.timeLeft + "|" + this.currentQuestion + "|" + this.correctAnswers);
         PreferenceManager.get().putInt(PreferenceManager.PREF_CURRENT_LEVEL, this.currentLevel);
-        PreferenceManager.get().putInt(PreferenceManager.PREF_COINS_COUNT, this.coinsCount);
+       /* PreferenceManager.get().putInt(PreferenceManager.PREF_COINS_COUNT, this.coinsCount);
         String qOrder = BuildConfig.FLAVOR + this.questionsOrder[0];
         for (int i = 1; i < this.questionsOrder.length; i++) {
             qOrder = qOrder + "|" + this.questionsOrder[i];
         }
-        PreferenceManager.get().putString(PreferenceManager.PREF_QUESTIONS_ORDER, qOrder);
+        PreferenceManager.get().putString(PreferenceManager.PREF_QUESTIONS_ORDER, qOrder);*/
     }
 
     public void resetForNextLevel() {

@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".MainActivity">
         </activity>
+        <activity android:name=".AdActivity">
+        </activity>
         <activity android:name=".VideoActivity">
         </activity>
         <activity android:name=".PhotoActivity">

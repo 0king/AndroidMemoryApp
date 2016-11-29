@@ -50,4 +50,30 @@
         android:layout_alignParentBottom="true"
         ads:adUnitId="@string/banner_home_footer">
     </com.google.android.gms.ads.AdView>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="224dp"
+        android:id="@+id/toolbar_result"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="93dp">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+            <TextView
+                android:textSize="30sp"
+                android:textColor="#141414"
+                android:id="@+id/current_level_result"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerVertical="true"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
 </RelativeLayout>

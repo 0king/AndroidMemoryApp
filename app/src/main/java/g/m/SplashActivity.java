@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         instance = this;
 
-        //    PreferenceManager.get().init(this);
+        PreferenceManager.get().init(this);
       //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
@@ -53,6 +53,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void onDataLoaded (Context context){
+        ContentHelper.getInstance().loadLevelData();
         Intent intent = new Intent(context, MainActivity.class);
         startActivity(intent);
 
