@@ -2,6 +2,7 @@ package g.m;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -91,7 +92,14 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
         Button button = (Button)findViewById(buttonId);
         String answer = button.getText().toString();
         checkAnswer(button,answer );
-        moveToNextPage();
+		new Handler().postDelayed( new Runnable() {
+
+			@Override
+			public void run() {
+				moveToNextPage();
+			}
+		}, 500);
+
 	}
 
 	public void checkAnswer(Button button, String answer){
@@ -109,6 +117,7 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 			viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
 		else{
 			startActivity(new Intent(QuestionsActivity.this,ResultActivity.class));
+            finish();
 		}
 	}
 

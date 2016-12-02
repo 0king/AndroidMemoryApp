@@ -5,7 +5,8 @@
              tools:context="g.m.QstnSlideFragment"
     android:orientation="vertical"
     android:background="@color/photoBackgroundColor"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:weightSum="1">
 
 
 <!--    <TextView
@@ -18,16 +19,41 @@
 
     <!-- todo change text styling -->
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/toolbar_question"
+        android:layout_weight="0.38">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+            <TextView
+                android:textSize="30sp"
+                android:textColor="#141414"
+                android:id="@+id/current_level_question"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerVertical="true"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
     <TextView
-        android:layout_weight="1"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"
         android:padding="30dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="181dp"
         android:layout_gravity="center"
-        android:id="@+id/question"/>
+        android:id="@+id/question"
+        android:layout_marginTop="10dp" />
 
     <!-- todo increase gap b/w question and answer -->
 
