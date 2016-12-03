@@ -42,13 +42,9 @@ public class ResultActivity extends AppCompatActivity {
 		next_level.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(ContentHelper.getInstance().getCurrentLevel() ==3){
-					startActivity(new Intent(ResultActivity.this,AdActivity.class));
-                    finish();
-				}else {
-					startActivity(new Intent(ResultActivity.this, PhotoActivity.class));
-                    finish();
-				}
+
+				startActivity(new Intent(ResultActivity.this, PhotoActivity.class));
+				finish();
 			}
 		});
 

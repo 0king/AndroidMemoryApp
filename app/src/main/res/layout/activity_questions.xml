@@ -5,8 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="g.m.QuestionsActivity">
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+      tools:context="g.m.QuestionsActivity">
+  
+  
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+         android:layout_height="15dp"
+         app:ci_drawable="@color/colorPrimaryDark"
+         app:ci_width="7dp"
+         app:ci_height="2dp"/>
+ 
 
 
     <g.m.NonSwipeablePager
@@ -14,14 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </g.m.NonSwipeablePager>
-
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        app:ci_drawable="@color/colorPrimaryDark"
-        app:ci_width="7dp"
-        app:ci_height="2dp"/>
 
 
 </RelativeLayout>
