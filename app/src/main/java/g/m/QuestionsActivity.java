@@ -11,6 +11,7 @@ import android.support.v4.view.PagerAdapter;
 import android.widget.Button;
 
 import g.m.model.Question;
+import me.relex.circleindicator.CircleIndicator;
 
 import static g.m.R.id.viewpager;
 
@@ -31,9 +32,11 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 		setContentView(R.layout.activity_questions);
 
 		viewPager = (NonSwipeablePager)findViewById(viewpager);
+		CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
 		//todo disable adapter touch event
 		pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(pagerAdapter);
+		indicator.setViewPager(viewPager);
 
 	}
 
