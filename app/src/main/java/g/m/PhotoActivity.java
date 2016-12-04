@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 import java.util.concurrent.RunnableFuture;
@@ -77,8 +82,28 @@ public class PhotoActivity extends AppCompatActivity {
 
         Glide.with(getApplicationContext())
                 .load(Constants.IMAGE_URL[current_level])
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(view);
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+        .listener(new RequestListener<String, GlideDrawable>() {
+            @Override
+            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                Log.i("Memory_app", "Listener onException: " + e.toString());
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                Log.i("Memory_app", "onResourceReady with resource = " + resource);
+                Log.i("Memory_app", "onResourceReady from memory cache = " + isFromMemoryCache);
+                return false;
+            }
+        })
+                .into(new SimpleTarget<GlideDrawable>(400, 300) {
+            @Override
+            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                Log.i("Memory_app", "GlideDrawalble = '" + resource + "'");
+                view.setImageDrawable(resource.getCurrent());
+            }
+        });
 
 
         this.level= server.getLevel(current_level);
