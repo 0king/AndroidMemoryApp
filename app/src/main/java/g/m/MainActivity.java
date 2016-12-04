@@ -5,14 +5,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import g.m.utils.FontManager;
+
 public class MainActivity extends AppCompatActivity {
 
-	Button startBtn,earnBtn;
+	Button startBtn;
+	ImageButton earnBtn;
 	private AdView mAdView;
 	TextView txtview;
 
@@ -32,6 +36,19 @@ public class MainActivity extends AppCompatActivity {
 
 		startBtn = (Button) findViewById(R.id.startBtn);
 
+		/* setting custom font to play button text */
+		//Typeface chargen = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/chargen.ttf");
+		startBtn.setTypeface(FontManager.get().getFontChargen());
+
+		/* setting custom font for guidance text on main screen */
+		//Typeface minecraft = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/minecraft.ttf");
+		TextView textView3 = (TextView) findViewById(R.id.textView3);
+		TextView textView4 = (TextView) findViewById(R.id.textView4);
+
+		textView3.setTypeface(FontManager.get().getFontMinecraft());
+		textView4.setTypeface(FontManager.get().getFontMinecraft());
+
+
 		startBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -39,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		earnBtn = (Button) findViewById(R.id.button4);
+		earnBtn = (ImageButton) findViewById(R.id.button4);
 
 		earnBtn.setOnClickListener(new View.OnClickListener() {
 			@Override

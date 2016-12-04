@@ -1,13 +1,11 @@
 package g.m;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,11 +14,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-import g.m.R;
+import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
 
@@ -70,11 +68,30 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        FontManager.get().initFonts(this);
+
+        /* setting font of "loading" textview */
+        //Typeface chargen = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/chargen.ttf");
+        TextView loading = (TextView) findViewById(R.id.loading);
+        loading.setTypeface(FontManager.get().getFontChargen());
+
+        /* setting font of "detective memory" texttviews */
+        TextView detective = (TextView) findViewById(R.id.detective);
+        TextView memory = (TextView) findViewById(R.id.memory);
+        //Typeface spac = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/spac.ttf");
+        detective.setTypeface(FontManager.get().getFontEasports());
+        memory.setTypeface(FontManager.get().getFontEasports());
+
         instance = this;
 
         PreferenceManager.get().init(this);
         progress = (ProgressBar)findViewById(R.id.progress_spinner);
-      //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
+        /* changing color of progress bar */
+        progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
+
+
+        //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 
@@ -86,8 +103,9 @@ public class SplashActivity extends AppCompatActivity {
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
-             ImageView img_view = (ImageView)findViewById(R.id.imgLogo);
-             img_view.setImageAlpha(120);
+             //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
+             RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
+             relativeLayout.setAlpha(0.5f); //todo check it @kush
 
             new ShowDialog().createAndShowDialog();
          }

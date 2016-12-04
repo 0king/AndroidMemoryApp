@@ -18,7 +18,6 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
-import java.util.concurrent.RunnableFuture;
 
 import g.m.model.Level;
 import g.m.model.Question;
@@ -30,7 +29,7 @@ public class PhotoActivity extends AppCompatActivity {
     ContentHelper server;
     public int current_level;
 	//screen timer
-	private static int TIME_OUT = 6000;
+	private static int TIME_OUT = 1000;
     public Handler photoHandler = new Handler();
 
     public Runnable photoTimer =   new Runnable() {
@@ -56,11 +55,10 @@ public class PhotoActivity extends AppCompatActivity {
         current_level=server.getCurrentLevel()-1;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
-       TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
+        TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
         txtview.setText("Level :"+current_level);
 
         //todo pre fetch data
-
 
         loadContent();
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
     <corners
-        android:radius="20dp"
+        android:radius="10dp"
         />
     <solid
-        android:color="@color/button_bg_correct"
+        android:color="@color/colorPrimaryDark"
         />
     <padding
         android:left="0dp"
@@ -13,11 +13,11 @@
         android:bottom="0dp"
         />
     <size
-        android:width="270dp"
+        android:width="300dp"
         android:height="60dp"
         />
-    <stroke
-        android:width="3dp"
+<!--    <stroke
+        android:width="0.1dp"
         android:color="#141414"
-        />
+        />-->
 </shape>

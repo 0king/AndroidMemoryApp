@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#8026e0</color>
-    <color name="colorPrimaryDark">#6b21ba</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#030c03</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="violetdark">#601993</color>
+    <color name="violetdarker">#491470</color>
+
     <color name="photoBackgroundColor">#a261e8</color>
+
     <color name="button_bg_correct">#ff219b55</color>
     <color name="button_bg_incorrect">#ffa53132</color>
+    
+    <color name="colorDarkBlack">#000000</color>
+
+    <color name="colorGreen">#20ad0a</color>
+    <color name="colorDarkGreen">#1a7a0c</color>
+    <color name="greendarker">#071906</color>
+
+    <color name="greendarkest">#030c03</color>
+
+    <color name="colorToolbar">#850ddb</color>
+
+    <color name="violet">#8026e0</color>
+    <color name="darkviolet">#6b21ba</color>
+    
+    <color name="textColor">#20ad0a</color>
+    <color name="colorStartButton">#930fa8</color>
+
 </resources>
