@@ -1,17 +1,10 @@
 package g.m;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
-import android.content.res.ColorStateList;
->>>>>>> kushroxx/master
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -22,13 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-=======
-import g.m.R;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
->>>>>>> kushroxx/master
 import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
@@ -105,20 +91,20 @@ public class SplashActivity extends AppCompatActivity {
 
         PreferenceManager.get().init(this);
         progress = (ProgressBar)findViewById(R.id.progress_spinner);
-<<<<<<< HEAD
+
         /* changing color of progress bar */
         progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
 
 
         //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
-=======
+
 		progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
         progress_horizontal = (ProgressBar)findViewById(R.id.progress_horizontal);
       //  progress_horizontal.getProgressDrawable().setColorFilter(
         //        Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
        // progress_horizontal.setProgressTintList(ColorStateList.valueOf(Color.RED))
       //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
->>>>>>> kushroxx/master
+
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 

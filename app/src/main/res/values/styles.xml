@@ -11,18 +11,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-<<<<<<< HEAD
-=======
     <style name="AppTheme.WhiteAccent">
         <item name="colorAccent">@color/colorGreen</item> <!-- Whatever color you want-->
     </style>
->>>>>>> kushroxx/master
 
 
         <style name="MainTextView" parent="@android:style/TextAppearance">
             <item name="android:layout_width">wrap_content</item>
             <item name="android:layout_height">wrap_content</item>
-            <item name="android:textSize">20dp</item>
+            <item name="android:textSize">27dp</item>
             <item name="android:textColor">@color/textColor</item>
         </style>
 

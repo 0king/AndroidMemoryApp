@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 		TextView textView3 = (TextView) findViewById(R.id.textView3);
 		TextView textView4 = (TextView) findViewById(R.id.textView4);
 
-		textView3.setTypeface(FontManager.get().getFontMinecraft());
-		textView4.setTypeface(FontManager.get().getFontMinecraft());
+		textView3.setTypeface(FontManager.get().getFontAflsolid());
+		textView4.setTypeface(FontManager.get().getFontAflsolid());
 
 
 		startBtn.setOnClickListener(new View.OnClickListener() {
