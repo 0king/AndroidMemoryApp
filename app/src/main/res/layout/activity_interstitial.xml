@@ -4,20 +4,19 @@
                 android:layout_height="match_parent"
                 tools:context=".VideoActivity">
 
-        <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progress"
-        android:gravity="center_horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:indeterminate="false"/>
-
     <!-- Force 32bpp -->
     <VideoView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:id="@+id/videoView" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress"
+        android:gravity="center_horizontal"
+        android:indeterminate="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

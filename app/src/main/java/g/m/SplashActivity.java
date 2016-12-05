@@ -8,6 +8,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -21,6 +24,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import g.m.R;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
 
@@ -28,7 +35,8 @@ public class SplashActivity extends AppCompatActivity {
 
     String now_playing, earned;
     ContentHelper server;
-    ProgressBar progress;
+    ProgressBar progress,progress_horizontal;
+
 
     private static SplashActivity instance;
 
@@ -55,7 +63,13 @@ public class SplashActivity extends AppCompatActivity {
 
                 progress.setVisibility(View.VISIBLE);
                 server = ContentHelper.getInstance();
-                server.loadJsonFromServer(getApplicationContext());
+
+                String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "0");
+                if(BuildConfig.FLAVOR.equals(jsonString)) {
+                    server.loadJsonFromServer(getApplicationContext());
+                }else {
+                    server.loadJsonFromPreferences(getApplicationContext());
+                }
 
                 new PrefetchData().execute();
                 //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
@@ -70,54 +84,58 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        FontManager.get().initFonts(this);
+
+        /* setting font of "loading" textview */
+        //Typeface chargen = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/chargen.ttf");
+        TextView loading = (TextView) findViewById(R.id.loading);
+        loading.setTypeface(FontManager.get().getFontChargen());
+
+        /* setting font of "detective memory" texttviews */
+        TextView detective = (TextView) findViewById(R.id.detective);
+        TextView memory = (TextView) findViewById(R.id.memory);
+        //Typeface spac = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/spac.ttf");
+        detective.setTypeface(FontManager.get().getFontEasports());
+        memory.setTypeface(FontManager.get().getFontEasports());
+
         instance = this;
 
         PreferenceManager.get().init(this);
         progress = (ProgressBar)findViewById(R.id.progress_spinner);
+		progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
+        progress_horizontal = (ProgressBar)findViewById(R.id.progress_horizontal);
+      //  progress_horizontal.getProgressDrawable().setColorFilter(
+        //        Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+       // progress_horizontal.setProgressTintList(ColorStateList.valueOf(Color.RED))
       //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 
          if( Utils.isNetworkAvailable(this)) {
+
              server = ContentHelper.getInstance();
-             server.loadJsonFromServer(getApplicationContext());
+
+             String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "");
+             Log.e("Memory_App","Json string is "+jsonString);
+             if(BuildConfig.FLAVOR.equals(jsonString)) {
+                 server.loadJsonFromServer(getApplicationContext());
+             }else {
+                 server.loadJsonFromPreferences(getApplicationContext());
+             }
 
              new PrefetchData().execute();
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
-             ImageView img_view = (ImageView)findViewById(R.id.imgLogo);
-             img_view.setImageAlpha(120);
+             //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
+             RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
+             relativeLayout.setAlpha(0.5f); //todo check it @kush
 
             new ShowDialog().createAndShowDialog();
          }
 
 
-    }
-
-    public class NetworkStateReceiver extends BroadcastReceiver {
-        private static final String TAG = "NetworkStateReceiver";
-
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-
-            Log.d(TAG, "Network connectivity change");
-
-            if (intent.getExtras() != null) {
-                final ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                final NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
-
-                if (ni != null && ni.isConnectedOrConnecting()) {
-                    Log.i(TAG, "Network " + ni.getTypeName() + " connected");
-                    server = ContentHelper.getInstance();
-                    server.loadJsonFromServer(getApplicationContext());
-
-                    new PrefetchData().execute();
-                } else if (intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, Boolean.FALSE)) {
-                    Log.d(TAG, "There's no network connectivity");
-                }
-            }
-        }
     }
 
     public void onDataLoaded (Context context){

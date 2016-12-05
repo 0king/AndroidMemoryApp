@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import g.m.utils.Constants;
+
 public class ResultActivity extends AppCompatActivity {
 
 	private ContentHelper server;
@@ -33,11 +35,18 @@ public class ResultActivity extends AppCompatActivity {
 				.addTestDevice("DEB6865817074BF8BC81596532F6D4CB")
 				.build();
 		mAdView.loadAd(adRequest);
+        next_level = (Button) findViewById(R.id.button2);
 
-		server.resetForNextLevel();
+
+		if((server.getCurrentLevel()-1) == Constants.total_levels){
+			server.resetGame();
+            next_level.setVisibility(View.INVISIBLE);
+		}else{
+			server.resetForNextLevel();
+		}
+
+        
         server.saveLevelData();
-
-		next_level = (Button) findViewById(R.id.button2);
 
 		next_level.setOnClickListener(new View.OnClickListener() {
 			@Override

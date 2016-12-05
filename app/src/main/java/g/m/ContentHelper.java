@@ -111,7 +111,9 @@ public class ContentHelper {
                 System.out.println(bytesRead);
                 System.out.println(contentLength);
                 System.out.println(done);
-                System.out.format("%d%% done\n", (100 * bytesRead) / contentLength);
+                long content_done = (100 * bytesRead) / contentLength;
+                SplashActivity.getInstance().progress_horizontal.setProgress((int)content_done);
+                System.out.format("%d%% done\n",content_done );
             }
         };
 
@@ -141,17 +143,30 @@ public class ContentHelper {
                 //  Log.e("MemoryApp", "Content "+response.body().string());
                 String jsonString = response.body().string();
                 if (!BuildConfig.FLAVOR.equals(jsonString)) {
+                    PreferenceManager.get().putString(PreferenceManager.PREF_JSON_STRING, jsonString);
                     ContentHelper.this.dataWrapper = (DataWrapper) new GsonBuilder().create().fromJson(jsonString, DataWrapper.class);
 
                     Log.e("MemoryApp","Total size is "+ContentHelper.this.dataWrapper.getLevels().size());
                     SplashActivity.getInstance().onDataLoaded(context);
-                    // initiquestion();
                 }
 
             }
 
 
         });
+
+    }
+
+    public void loadJsonFromPreferences(final Context context) {
+        String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "0");
+
+        ContentHelper.this.dataWrapper = (DataWrapper) new GsonBuilder().create().fromJson(jsonString, DataWrapper.class);
+
+        Log.e("MemoryApp","Total size is "+ContentHelper.this.dataWrapper.getLevels().size());
+        SplashActivity.getInstance().progress_horizontal.setProgress(100);
+        SplashActivity.getInstance().onDataLoaded(context);
+
+
 
     }
 
@@ -262,6 +277,10 @@ public class ContentHelper {
         if (this.dataWrapper.getLevels().size() < this.currentLevel - 1) {
            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
         }
+    }
+
+    public void resetGame() {
+        this.currentLevel =1;
     }
 
     public int[] getQuestionsOrder() {

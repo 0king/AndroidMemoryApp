@@ -15,8 +15,9 @@
          android:layout_height="15dp"
          app:ci_drawable="@color/colorPrimaryDark"
          app:ci_width="7dp"
-         app:ci_height="2dp"/>
- 
+         app:ci_height="2dp"
+        android:layout_marginTop="42dp" />
+
 
 
     <g.m.NonSwipeablePager

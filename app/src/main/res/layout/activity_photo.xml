@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="g.m.PhotoActivity"
-    android:background="@color/photoBackgroundColor">
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:padding="5dp"
