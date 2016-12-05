@@ -4,6 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.content.res.ColorStateList;
+>>>>>>> kushroxx/master
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
@@ -18,6 +22,13 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+=======
+import g.m.R;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+>>>>>>> kushroxx/master
 import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
@@ -26,7 +37,8 @@ public class SplashActivity extends AppCompatActivity {
 
     String now_playing, earned;
     ContentHelper server;
-    ProgressBar progress;
+    ProgressBar progress,progress_horizontal;
+
 
     private static SplashActivity instance;
 
@@ -53,7 +65,13 @@ public class SplashActivity extends AppCompatActivity {
 
                 progress.setVisibility(View.VISIBLE);
                 server = ContentHelper.getInstance();
-                server.loadJsonFromServer(getApplicationContext());
+
+                String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "0");
+                if(BuildConfig.FLAVOR.equals(jsonString)) {
+                    server.loadJsonFromServer(getApplicationContext());
+                }else {
+                    server.loadJsonFromPreferences(getApplicationContext());
+                }
 
                 new PrefetchData().execute();
                 //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
@@ -87,17 +105,34 @@ public class SplashActivity extends AppCompatActivity {
 
         PreferenceManager.get().init(this);
         progress = (ProgressBar)findViewById(R.id.progress_spinner);
+<<<<<<< HEAD
         /* changing color of progress bar */
         progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
 
 
         //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
+=======
+		progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
+        progress_horizontal = (ProgressBar)findViewById(R.id.progress_horizontal);
+      //  progress_horizontal.getProgressDrawable().setColorFilter(
+        //        Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
+       // progress_horizontal.setProgressTintList(ColorStateList.valueOf(Color.RED))
+      //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
+>>>>>>> kushroxx/master
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 
          if( Utils.isNetworkAvailable(this)) {
+
              server = ContentHelper.getInstance();
-             server.loadJsonFromServer(getApplicationContext());
+
+             String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "");
+             Log.e("Memory_App","Json string is "+jsonString);
+             if(BuildConfig.FLAVOR.equals(jsonString)) {
+                 server.loadJsonFromServer(getApplicationContext());
+             }else {
+                 server.loadJsonFromPreferences(getApplicationContext());
+             }
 
              new PrefetchData().execute();
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
@@ -111,31 +146,6 @@ public class SplashActivity extends AppCompatActivity {
          }
 
 
-    }
-
-    public class NetworkStateReceiver extends BroadcastReceiver {
-        private static final String TAG = "NetworkStateReceiver";
-
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-
-            Log.d(TAG, "Network connectivity change");
-
-            if (intent.getExtras() != null) {
-                final ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-                final NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
-
-                if (ni != null && ni.isConnectedOrConnecting()) {
-                    Log.i(TAG, "Network " + ni.getTypeName() + " connected");
-                    server = ContentHelper.getInstance();
-                    server.loadJsonFromServer(getApplicationContext());
-
-                    new PrefetchData().execute();
-                } else if (intent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, Boolean.FALSE)) {
-                    Log.d(TAG, "There's no network connectivity");
-                }
-            }
-        }
     }
 
     public void onDataLoaded (Context context){

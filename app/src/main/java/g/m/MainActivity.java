@@ -25,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		//VideoAd.getInstance().init(this);
-
+		//Shows the banner ad
 		mAdView = (AdView) findViewById(R.id.adView);
 		AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("DEB6865817074BF8BC81596532F6D4CB")
@@ -66,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-
-		/*txtview = (TextView)findViewById(R.id.level_info);
-		txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());*/
 	}
 
 	public void onBackPressed() {
@@ -101,7 +97,4 @@ public class MainActivity extends AppCompatActivity {
 		}
 		super.onDestroy();
 	}
-  /*
-    */
-
 }
