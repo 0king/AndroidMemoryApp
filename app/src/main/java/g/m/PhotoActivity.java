@@ -56,7 +56,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
         TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
-        txtview.setText("Level :"+current_level);
+        txtview.setText("Level: "+current_level);
 
         //todo pre fetch data
 

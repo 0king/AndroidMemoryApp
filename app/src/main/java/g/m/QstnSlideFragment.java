@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,7 +52,7 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		//todo use for for loop
 		Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
 		TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
-		txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());
+		txtview.setText("Level: "+ContentHelper.getInstance().getCurrentLevel());
 
         this.buttonAnswers = new Button[5];
         this.buttonAnswers[0] = (Button) rootView.findViewById(R.id.option1);

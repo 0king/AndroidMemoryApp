@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_photo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="g.m.PhotoActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
-    <ImageView
-        android:padding="5dp"
-        android:id="@+id/image"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:foregroundGravity="center_horizontal|center"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greendarker"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar_photo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="30sp"
+                android:textColor="@color/textColor"
+                android:id="@+id/current_level_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
 
     <TextView
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observe the photo"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/textColor"/>
+
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center_horizontal|center"/>
+
+<!--    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -26,34 +62,19 @@
         android:layout_marginLeft="131dp"
         android:layout_marginStart="131dp"
         android:layout_marginTop="25dp"
-        android:id="@+id/textView2" />
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
+        android:id="@+id/textView2" />-->
+    <TextView
+        android:layout_margin="5dp"
+        android:text="5"
+        android:textColor="@color/textColor"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
-        android:id="@+id/toolbar_photo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-         <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        android:gravity="center"
+        android:layout_gravity="center"/>
 
-        <TextView
-            android:textSize="30sp"
-            android:textColor="#141414"
-            android:id="@+id/current_level_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:text="TEXT"
-            android:gravity="center" />
-
-    </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
-</RelativeLayout>
+</LinearLayout>
 
 
 
