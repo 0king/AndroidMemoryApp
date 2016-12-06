@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import g.m.utils.Constants;
+import g.m.utils.FontManager;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -26,9 +27,9 @@ public class ResultActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_result);
 		server = ContentHelper.getInstance();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_result);
-        TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_result);
-        txtview.setText("Level :"+server.getCurrentLevel());
+      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_result);
+       // TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_result);
+      //  txtview.setText("Level :"+server.getCurrentLevel());
 
 		mAdView = (AdView) findViewById(R.id.adView1);
 		AdRequest adRequest = new AdRequest.Builder()
@@ -36,9 +37,9 @@ public class ResultActivity extends AppCompatActivity {
 				.build();
 		mAdView.loadAd(adRequest);
         next_level = (Button) findViewById(R.id.button2);
+		next_level.setTypeface(FontManager.get().getFontChargen());
 
-
-		if((server.getCurrentLevel()-1) == Constants.total_levels){
+		if((server.getCurrentLevel()) == Constants.total_levels){
 			server.resetGame();
             next_level.setVisibility(View.INVISIBLE);
 		}else{
@@ -58,6 +59,7 @@ public class ResultActivity extends AppCompatActivity {
 		});
 
 		main_menu = (Button) findViewById(R.id.button3);
+		main_menu.setTypeface(FontManager.get().getFontChargen());
 
 		main_menu.setOnClickListener(new View.OnClickListener() {
 			@Override

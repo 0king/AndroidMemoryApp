@@ -36,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
     String now_playing, earned;
     ContentHelper server;
     ProgressBar progress,progress_horizontal;
+    boolean image_loaded,data_loaded=false;
 
 
     private static SplashActivity instance;
@@ -71,8 +72,8 @@ public class SplashActivity extends AppCompatActivity {
                     server.loadJsonFromPreferences(getApplicationContext());
                 }
 
-                new PrefetchData().execute();
-                //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
+              //  new PrefetchData().execute();
+                new getAllImages().execute();
 
             }else {
                 createAndShowDialog();
@@ -124,7 +125,8 @@ public class SplashActivity extends AppCompatActivity {
                  server.loadJsonFromPreferences(getApplicationContext());
              }
 
-             new PrefetchData().execute();
+           //  new PrefetchData().execute();
+             new getAllImages().execute();
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
@@ -140,13 +142,32 @@ public class SplashActivity extends AppCompatActivity {
 
     public void onDataLoaded (Context context){
 
-        ContentHelper.getInstance().loadLevelData();
-        progress.setVisibility(View.INVISIBLE);
-        Intent intent = new Intent(context, MainActivity.class);
-        startActivity(intent);
+        data_loaded = true;
+     //   if(image_loaded && data_loaded) {
 
-        // close this activity
-        finish();
+            ContentHelper.getInstance().loadLevelData();
+            progress.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+
+            // close this activity
+            finish();
+       // }
+
+    }
+
+    public void onImageLoaded (Context context){
+
+        image_loaded = true;
+        if(image_loaded && data_loaded) {
+            ContentHelper.getInstance().loadLevelData();
+            progress.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(context, MainActivity.class);
+            startActivity(intent);
+
+            // close this activity
+            finish();
+        }
 
     }
 
@@ -156,32 +177,18 @@ public class SplashActivity extends AppCompatActivity {
     private class PrefetchData extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // before making http calls         
-
+        protected Void doInBackground(Void... arg0) {
+           server.loadFirstImageFromServer(getApplicationContext());
+            return null;
         }
+    }
+
+    private class getAllImages extends AsyncTask<Void, Void, Void> {
 
         @Override
-
         protected Void doInBackground(Void... arg0) {
-
-
             server.loadAllImagesFromServer(getApplicationContext());
             return null;
-
-
         }
-
-
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            // After completing http call
-            // will close this activity and lauch main activity
-
-        }
-
-
-
     }
 }

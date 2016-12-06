@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="g.m.ResultActivity"
-    android:background="@color/photoBackgroundColor">
+    android:background="@android:color/background_dark">
 
     <TextView
         android:text="Score"
@@ -20,27 +20,34 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="108dp"
         android:id="@+id/textView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/background_light" />
     <Button
-        android:text="Next Level"
+        android:text="Next Case"
+        android:id="@+id/button2"
+        android:textSize="30dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:id="@+id/button2"
-        style="@android:style/Widget.Holo.Button"/>
+        android:textColor="@color/textColor"
+        android:layout_alignTop="@+id/button3"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView" />
+
 
     <Button
         android:text="Main Menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="145dp"
         android:id="@+id/button3"
-        style="@android:style/Widget.Holo.Button"/>
+        android:textSize="30dp"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/textColor"
+        android:layout_above="@+id/adView1"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginBottom="39dp" />
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
         android:layout_width="wrap_content"
@@ -50,30 +57,5 @@
         android:layout_alignParentBottom="true"
         ads:adUnitId="@string/banner_home_footer">
     </com.google.android.gms.ads.AdView>
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="224dp"
-        android:id="@+id/toolbar_result"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="93dp">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
-
-            <TextView
-                android:textSize="30sp"
-                android:textColor="#141414"
-                android:id="@+id/current_level_result"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_centerVertical="true"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>

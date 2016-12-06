@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import g.m.model.DataWrapper;
 import g.m.model.Level;
@@ -25,6 +27,8 @@ import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
 
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.module.GlideModule;
 import com.bumptech.glide.request.FutureTarget;
 import com.google.gson.GsonBuilder;
 
@@ -34,6 +38,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import static g.m.AppController.TAG;
 
@@ -49,10 +55,10 @@ public class ContentHelper {
     private int correctAnswers;
     private Fragment currentFragment;
     private int currentFragmentType;
-    private int currentLevel;
+    public int currentLevel;
     private int currentQuestion;
     private int[] questionsOrder;
-    private int timeLeft;
+    private long timeLeft;
     long request_time;
 
     private static ContentHelper instance;
@@ -77,9 +83,30 @@ public class ContentHelper {
     }
 
 
+    public void loadFirstImageFromServer(final Context context) {
+
+        Log.e("MemoryApp","Url is "+Constants.IMAGE_URL[0]);
+            FutureTarget<File> future=Glide.with(context)
+                    .load(Constants.IMAGE_URL[0])
+                    .downloadOnly(400, 300);
+
+            try {
+                future.get();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Log.e("MemoryApp","Image Loaded is "+Constants.IMAGE_URL[0]);
+
+
+        SplashActivity.getInstance().onImageLoaded(context);
+
+
+    }
+
+
     public void loadAllImagesFromServer(final Context context) {
 
-        for  (int i=0;i<Constants.total_levels;i++) {
+        for  (int i=1;i<Constants.total_levels;i++) {
            Log.e("MemoryApp","Url is "+Constants.IMAGE_URL[i]);
             FutureTarget<File> future=Glide.with(context)
                     .load(Constants.IMAGE_URL[i])
@@ -90,10 +117,8 @@ public class ContentHelper {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            Log.e("MemoryApp","Image Loaded is "+Constants.IMAGE_URL[i]);
         }
-        return;
-
 
     }
 
@@ -229,10 +254,9 @@ public class ContentHelper {
     }
 
     public void loadLevelData() {
-        this.currentLevel = PreferenceManager.get().getInt(PreferenceManager.PREF_CURRENT_LEVEL, 1);
 
+        this.currentLevel = PreferenceManager.get().getInt(PreferenceManager.PREF_CURRENT_LEVEL, 1);
         this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel)).getQuestions().size());
-        /*
         String levelData = PreferenceManager.get().getString(PreferenceManager.PREF_LEVEL_DATA, BuildConfig.FLAVOR);
         String qOrder = PreferenceManager.get().getString(PreferenceManager.PREF_QUESTIONS_ORDER, BuildConfig.FLAVOR);
 
@@ -255,18 +279,19 @@ public class ContentHelper {
         this.questionsOrder = new int[qStrings.length];
         for (int i = 0; i < qStrings.length; i++) {
             this.questionsOrder[i] = Integer.parseInt(qStrings[i]);
-        }*/
+        }
     }
 
     public void saveLevelData() {
-       // PreferenceManager.get().putString(PreferenceManager.PREF_LEVEL_DATA, this.timeLeft + "|" + this.currentQuestion + "|" + this.correctAnswers);
+
+        PreferenceManager.get().putString(PreferenceManager.PREF_LEVEL_DATA, this.timeLeft + "|" + this.currentQuestion + "|" + this.correctAnswers);
         PreferenceManager.get().putInt(PreferenceManager.PREF_CURRENT_LEVEL, this.currentLevel);
-       /* PreferenceManager.get().putInt(PreferenceManager.PREF_COINS_COUNT, this.coinsCount);
+        PreferenceManager.get().putInt(PreferenceManager.PREF_COINS_COUNT, this.coinsCount);
         String qOrder = BuildConfig.FLAVOR + this.questionsOrder[0];
         for (int i = 1; i < this.questionsOrder.length; i++) {
             qOrder = qOrder + "|" + this.questionsOrder[i];
         }
-        PreferenceManager.get().putString(PreferenceManager.PREF_QUESTIONS_ORDER, qOrder);*/
+        PreferenceManager.get().putString(PreferenceManager.PREF_QUESTIONS_ORDER, qOrder);
     }
 
     public void resetForNextLevel() {
@@ -277,6 +302,7 @@ public class ContentHelper {
         if (this.dataWrapper.getLevels().size() < this.currentLevel - 1) {
            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
         }
+
     }
 
     public void resetGame() {
@@ -285,5 +311,21 @@ public class ContentHelper {
 
     public int[] getQuestionsOrder() {
         return this.questionsOrder;
+    }
+
+    public void setCurrentQuestion(int position) {
+        this.currentQuestion = position;
+    }
+
+    public int getCurrentQuestion() {
+        return this.currentQuestion;
+    }
+
+    public void setTimeLeft(long timeLeft) {
+        this.timeLeft = timeLeft;
+    }
+
+    public long getTimeLeft() {
+        return this.timeLeft;
     }
 }

@@ -51,9 +51,9 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_qstn_slide, container, false);
 
 		//todo use for for loop
-		Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
-		TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
-		txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());
+		//Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
+		//TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
+		//txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());
 
         this.buttonAnswers = new Button[5];
         this.buttonAnswers[0] = (Button) rootView.findViewById(R.id.option1);
@@ -80,9 +80,9 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		this.txtQuestion.setText(this.question.getQuestion());
 		for (int i = 0; i < this.buttonAnswers.length; i++) {
 			if (i < answers.size()) {
-				this.buttonAnswers[i].setText((CharSequence) answers.get(i));
+				this.buttonAnswers[(4-i)].setText((CharSequence) answers.get(i));
 			} else {
-				this.buttonAnswers[i].setVisibility(View.INVISIBLE);
+				this.buttonAnswers[(4-i)].setVisibility(View.INVISIBLE);
 			}
 		}
 	}

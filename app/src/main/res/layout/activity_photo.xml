@@ -18,15 +18,17 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:textSize="50sp"
+        android:textColor="@color/colorGreen"
+        android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="131dp"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="25dp"
-        android:id="@+id/textView2" />
+        android:textStyle="bold"
+        android:text="Timer"
+        android:gravity="center"
+        android:layout_below="@+id/image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -42,14 +44,14 @@
 
         <TextView
             android:textSize="30sp"
-            android:textColor="#141414"
+            android:textColor="@color/colorGreen"
             android:id="@+id/current_level_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:textStyle="bold"
             android:text="TEXT"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
     </android.support.v7.widget.Toolbar>
