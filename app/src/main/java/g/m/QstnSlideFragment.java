@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,7 +29,7 @@ import g.m.utils.FontManager;
 public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 
 	Button btn1,btn2;
-	private MainActivity activity;
+	private QuestionsActivity activity;
 	private Question question;
 	private Button[] buttonAnswers;
 	private TextView txtQuestion;
@@ -50,12 +52,12 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		// Inflate the layout for this fragment
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_qstn_slide, container, false);
 
-		Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
-		TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_question);
-		toolbarText.setText("Case #"+ContentHelper.getInstance().getCurrentLevel());
+		//todo use for for loop
+		//Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
+		//TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
+		//txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());
 
-		/* setting fonts */
-		toolbarText.setTypeface(FontManager.get().getFontDigital());
+        this.activity = (QuestionsActivity) getActivity();
 
 
         this.buttonAnswers = new Button[5];
@@ -69,7 +71,7 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
         }
 
 		this.txtQuestion = (TextView) rootView.findViewById(R.id.question);
-        List<Question> questions = QtsnData.getQuestion();
+        List<Question> questions = ContentHelper.getInstance().getQuestion();
         Log.e ("MemoryApp","Total questions in level is "+questions.size());
 
 		initializeInterface();
@@ -102,12 +104,6 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		super.onAttach(context);
 		//Activity is a context so if you can simply check the context is an Activity and cast it
 		Activity activity = context instanceof Activity ? (Activity) context : null;
-
-		try{
-			onButtonClickedListener = (OnButtonClickedListener) activity;
-		}catch (ClassCastException e){
-			throw new ClassCastException(activity.toString() + " must implement OnButtonClickedListener");
-		}
 	}
 
 	@Override
@@ -115,22 +111,50 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		switch (v.getId()){
 			//todo handle variable # of buttons
 			case R.id.option1:
-				onButtonClickedListener.onButtonClicked(v.getId());
+                checkAnswer(this.buttonAnswers[0], this.buttonAnswers[0].getText().toString());
 				break;
             case R.id.option2:
-                onButtonClickedListener.onButtonClicked(v.getId());
+                checkAnswer(this.buttonAnswers[1], this.buttonAnswers[1].getText().toString());
                 break;
             case R.id.option3:
-                onButtonClickedListener.onButtonClicked(v.getId());
+                checkAnswer(this.buttonAnswers[2], this.buttonAnswers[2].getText().toString());
                 break;
             case R.id.option4:
-                onButtonClickedListener.onButtonClicked(v.getId());
+                checkAnswer(this.buttonAnswers[3], this.buttonAnswers[3].getText().toString());
                 break;
             case R.id.option5:
-                onButtonClickedListener.onButtonClicked(v.getId());
+                checkAnswer(this.buttonAnswers[4], this.buttonAnswers[4].getText().toString());
                 break;
 		}
 	}
+
+    public void checkAnswer(Button button, String answer){
+        //todo change color
+        //todo updatePoints()
+        if (question.getCorrectAnswer().equals(answer)) {
+            Log.e("MemoryApp","Correct Answer");
+            button.setBackgroundResource(R.drawable.button_rectangle_green);
+            int current_coins = ContentHelper.getInstance().getCurrentCoins();
+            ContentHelper.getInstance().setCurrentCoins(current_coins+20);
+            int correct_answers = ContentHelper.getInstance().getCurrentCoins();
+            ContentHelper.getInstance().setCorrectAnswers(correct_answers+1);
+        } else {
+            Log.e("MemoryApp","Wrong Answer");
+            button.setBackgroundResource(R.drawable.button_rectangle_red);
+            int current_coins = ContentHelper.getInstance().getCurrentCoins();
+            ContentHelper.getInstance().setCurrentCoins(current_coins-10);
+        }
+        ContentHelper.getInstance().setCurrentQuestion(ContentHelper.getInstance().getCurrentQuestion() + 1);
+        ContentHelper.getInstance().saveLevelData();
+        activity.changescore();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                activity.moveToNextPage();
+            }
+        }, 500);
+    }
 
 	@SuppressWarnings("deprecation")
 	@Override

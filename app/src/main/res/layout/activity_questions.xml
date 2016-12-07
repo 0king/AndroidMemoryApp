@@ -6,25 +6,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="g.m.QuestionsActivity">
+    tools:context="g.m.QuestionsActivity"
+    android:background="@color/colorPrimaryDark">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greendarker"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="60dp"
+        android:id="@+id/toolbar_question">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+
+            <ImageButton
+                android:background="@mipmap/coin"
+                android:id="@+id/coin"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="false"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/coin_text_question"
+                android:textSize="25dp"
+                android:text="25dp"
+                android:layout_toStartOf="@+id/coin"
+                android:layout_toLeftOf="@+id/coin"
+                android:textColor="@android:color/holo_orange_dark"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_marginLeft="20dp"
+                android:layout_alignBottom="@+id/coin"
+                android:layout_alignTop="@+id/coin" />
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="@color/textColor"
+                android:id="@+id/current_level_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="false"
+                android:layout_alignBottom="@+id/coin_text"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="135dp"
+                android:layout_marginStart="135dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="25dp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 
     <g.m.NonSwipeablePager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="490dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/indicator">
     </g.m.NonSwipeablePager>
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="match_parent"
         app:ci_drawable="@color/textColor"
-        app:ci_width="1dp"
-        app:ci_height="1dp"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        app:ci_width="5dp"
+        app:ci_height="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/toolbar_question"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/toolbar_question" />
 
-    <!-- todo shift the Toolbar from fragment to this activity -->
+   <!-- todo shift the Toolbar from fragment to this activity -->
 
 
 </RelativeLayout>

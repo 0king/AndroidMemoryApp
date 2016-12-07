@@ -3,6 +3,7 @@ package g.m;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,13 +17,14 @@ import g.m.utils.FontManager;
 public class MainActivity extends AppCompatActivity {
 
 	Button startBtn, earnBtn;
-	ImageButton miscBtn;
+	ImageButton settingsBtn;
 	private AdView mAdView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+        ContentHelper.getInstance().loadData();
 
 		//Shows the banner ad
 		mAdView = (AdView) findViewById(R.id.adView);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 		startBtn = (Button) findViewById(R.id.startBtn);
 
+
 		/* setting custom font to play button text */
 		//Typeface chargen = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/chargen.ttf");
 		startBtn.setTypeface(FontManager.get().getFontChargen());
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 		//Typeface minecraft = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/minecraft.ttf");
 		TextView textView3 = (TextView) findViewById(R.id.textView3);
 		TextView textView4 = (TextView) findViewById(R.id.textView4);
+        TextView coin_text = (TextView) findViewById(R.id.coin_text);
+        Log.e("MemoryApp","Coins :"+ContentHelper.getInstance().getCurrentCoins());
+        coin_text.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
+        coin_text.setTypeface(FontManager.get().getFontChargen());
 
 		textView3.setTypeface(FontManager.get().getFontAfl());
 		textView4.setTypeface(FontManager.get().getFontAfl());
@@ -50,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
 		startBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(MainActivity.this, PhotoActivity.class));
+				if (ContentHelper.getInstance().getTimeLeft() > 0) {
+					startActivity(new Intent(MainActivity.this, PhotoActivity.class));
+				} else {
+					startActivity(new Intent(MainActivity.this, QuestionsActivity.class));
+				}
 			}
 		});
 
@@ -69,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 		//activity_main = (LinearLayout) findViewById(R.id.activity_main);
-		miscBtn = (ImageButton) findViewById(R.id.miscBtn);
-		miscBtn.setOnClickListener(new View.OnClickListener() {
+        settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//fragmentTransaction.add(R.id.activity_main, new ExtrasFragment());

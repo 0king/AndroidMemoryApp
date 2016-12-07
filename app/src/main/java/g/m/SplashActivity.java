@@ -1,17 +1,29 @@
 package g.m;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import g.m.R;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
     ContentHelper server;
     ProgressBar progress,progress_horizontal;
     boolean image_loaded,data_loaded=false;
+    RelativeLayout relativeLayout;
 
 
     private static SplashActivity instance;
@@ -42,9 +55,8 @@ public class SplashActivity extends AppCompatActivity {
             builder.setTitle("No Internet Connection");
             builder.setMessage("Connect to Internet and try again");
             AlertDialog alertDialog = builder.create();
+            alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.show();
-
-
 
         }
 
@@ -52,11 +64,11 @@ public class SplashActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             if( Utils.isNetworkAvailable(SplashActivity.this)) {
 
-                progress.setVisibility(View.VISIBLE);
+                progress_horizontal.setVisibility(View.VISIBLE);
                 server = ContentHelper.getInstance();
 
-
-                String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "0");
+                String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "");
+                Log.e("Memory_App","Json string is "+jsonString);
                 if(BuildConfig.FLAVOR.equals(jsonString)) {
                     server.loadJsonFromServer(getApplicationContext());
                 }else {
@@ -92,30 +104,16 @@ public class SplashActivity extends AppCompatActivity {
         detective.setTypeface(FontManager.get().getFontEasports());
         memory.setTypeface(FontManager.get().getFontEasports());
 
+        relativeLayout= (RelativeLayout) findViewById(R.id.relativelayout);
+
         instance = this;
 
         PreferenceManager.get().init(this);
         progress = (ProgressBar)findViewById(R.id.progress_spinner);
-
-        /* changing color of progress bar */
-        progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
-
-
-        //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
-
+		progress.getIndeterminateDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);//android.graphics.PorterDuff.Mode.SRC_IN
         progress_horizontal = (ProgressBar)findViewById(R.id.progress_horizontal);
-      //  progress_horizontal.getProgressDrawable().setColorFilter(
-        //        Color.GREEN, android.graphics.PorterDuff.Mode.SRC_IN);
-       // progress_horizontal.setProgressTintList(ColorStateList.valueOf(Color.RED))
-      //   int  already_cached=PreferenceManager.get().getInt(PreferenceManager.PREF_ALREADY_CACHED, 0);
 
-
-       //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
-
-         if(Utils.isNetworkAvailable(this)) {
-             /* if network is available */
-
-             /* set visibility to true after disabled when network unavailable */
+         if( Utils.isNetworkAvailable(this)) {
              loading.setVisibility(View.VISIBLE);
              progress_horizontal.setVisibility(View.VISIBLE);
 
@@ -129,20 +127,11 @@ public class SplashActivity extends AppCompatActivity {
                  server.loadJsonFromPreferences(getApplicationContext());
              }
 
-           //  new PrefetchData().execute();
              new getAllImages().execute();
-       //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
-
-             /* if newtwork is not available */
-             //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
-             RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
-             relativeLayout.setAlpha(0.5f);
-
              loading.setVisibility(View.INVISIBLE);
              progress_horizontal.setVisibility(View.INVISIBLE);
-
             new ShowDialog().createAndShowDialog();
          }
 
@@ -151,12 +140,11 @@ public class SplashActivity extends AppCompatActivity {
 
     public void onDataLoaded (Context context){
 
-
         data_loaded = true;
      //   if(image_loaded && data_loaded) {
 
             ContentHelper.getInstance().loadLevelData();
-            progress.setVisibility(View.INVISIBLE);
+            //progress.setVisibility(View.INVISIBLE);
             Intent intent = new Intent(context, MainActivity.class);
             startActivity(intent);
 

@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
+import java.util.concurrent.RunnableFuture;
 
 import g.m.model.Level;
 import g.m.model.Question;
@@ -27,37 +28,32 @@ import g.m.utils.Constants;
 import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 
-
 public class PhotoActivity extends AppCompatActivity {
 	private Level level;
     ImageView view;
     ContentHelper server;
     public int current_level;
-
-	//screen timer
-	private static int TIME_OUT = 5000;
-    public Handler photoHandler = new Handler();
-    TextView timerText;
+    TextView mTextField;
     long timer_passed =0;
     long timer_count;
-    CountDownTimer timer;
+    private static CountDownTimer timer;
 
     public void timerStart(long timeLengthMilli) {
-        timer = new CountDownTimer(timeLengthMilli, 1000) {
+        timer = new CountDownTimer(timeLengthMilli, 500) {
 
             public void onTick(long millisUntilFinished) {
-	            timerText.setText("" + (millisUntilFinished / 1000));
-                ContentHelper.getInstance().setTimeLeft((millisUntilFinished / 1000));
+                long timeleft = (millisUntilFinished / 1000)+1;
+                mTextField.setText("" + timeleft);
+                ContentHelper.getInstance().setTimeLeft(timeleft);
+                ContentHelper.getInstance().saveLevelData();
             }
 
             public void onFinish() {
 
                 ContentHelper.getInstance().setTimeLeft(0);
+                ContentHelper.getInstance().saveLevelData();
                 Intent i = new Intent(PhotoActivity.this, QuestionsActivity.class);
                 startActivity(i);
-
-                //close this activity
-                finish();
             }
         }.start();
     }
@@ -72,23 +68,26 @@ public class PhotoActivity extends AppCompatActivity {
         current_level=server.getCurrentLevel()-1;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
+       TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
+        txtview.setText("Case #"+(current_level+1));
+        txtview.setTypeface(FontManager.get().getFontDigital());
 
-        TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_photo);
-		toolbarText.setText("Case #"+current_level+1);
 
 		/* setting fonts for textViews */
-		timerText = (TextView) findViewById(R.id.timer);
+        mTextField = (TextView)findViewById(R.id.timer);
 
 		TextView textInstruction = (TextView) findViewById(R.id.textInstruction);
-		timerText.setTypeface(FontManager.get().getFontDigital());
+        mTextField.setTypeface(FontManager.get().getFontDigital());
 		textInstruction.setTypeface(FontManager.get().getFontAfl());
-		toolbarText.setTypeface(FontManager.get().getFontDigital());
+        mTextField.setTypeface(FontManager.get().getFontDigital());
 
 
         timer_count = PreferenceManager.get().getLong(PreferenceManager.PREF_TIMER_COUNT, 0);
         if(timer_count == 0){
             timer_count = 10000;
         }
+
+        //todo pre fetch data
 
         loadContent();
 
@@ -97,25 +96,15 @@ public class PhotoActivity extends AppCompatActivity {
 	/* calling this function so that if a user presses back button while the timer is running, the user will be taken back and timer stops and QuestionsActivity wont load after timeout*/
 	@Override
 	public void onBackPressed() {
+        timer.cancel();
 		super.onBackPressed();
         //photoHandler.removeCallbacks(photoTimer);
 		//todo stop handler
-        timer.cancel();
-        finish();
+
+        startActivity(new Intent(PhotoActivity.this, MainActivity.class));
 	}
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        timer.cancel();
-    }
 
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        timerStart(ContentHelper.getInstance().getTimeLeft()*1000);
-    }
 
     public void loadContent(){
 
@@ -163,12 +152,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-        timerStart(ContentHelper.getInstance().getTimeLeft()*1000);
-
-        this.level= server.getLevel(current_level);
-        List<Question> questions = this.level.getQuestions();
-        //Log.e("MemoryApp","Total questions in level is "+questions.size()+"and question is "+questions.get(1).getQuestion());
-        QtsnData.setQuestions(questions);
+        timerStart(Math.min(ContentHelper.getInstance().getTimeLeft(),10)*1000);
 
     }
 }

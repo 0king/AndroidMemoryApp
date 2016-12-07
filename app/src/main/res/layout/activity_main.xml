@@ -9,12 +9,45 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
     <ImageButton
-        android:layout_margin="20dp"
         android:background="@mipmap/menu37"
         style="@style/MainOtherButtons"
-        android:id="@+id/miscBtn"/>
+        android:id="@+id/settingsBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="20dp" />
+        <ImageButton
+            android:background="@mipmap/coin"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/coin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/coin_text"
+            android:textSize="25dp"
+            android:text="25dp"
+            android:layout_toStartOf="@+id/coin"
+            android:layout_toLeftOf="@+id/coin"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignTop="@+id/coin" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +57,7 @@
 
         <!-- todo kush bind relevant info -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/level_info"/>
         <!--
@@ -32,6 +65,7 @@
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="2"-->
+
 
         <TextView
             style="@style/MainTextView"
@@ -71,6 +105,7 @@
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:textSize="30sp"
             android:textColor="@color/textColor"/>
+
 
         <!-- drawableleft -->
 

@@ -5,14 +5,12 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.FutureTarget;
-import com.google.gson.GsonBuilder;
-
-import java.io.File;
-import java.io.IOException;
-
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import g.m.model.DataWrapper;
 import g.m.model.Level;
+import g.m.model.Question;
 import g.m.utils.Constants;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
@@ -30,6 +28,23 @@ import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
 
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.module.GlideModule;
+import com.bumptech.glide.request.FutureTarget;
+import com.google.gson.GsonBuilder;
+
+
+
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static g.m.AppController.TAG;
+
 /**
  * Created by kushroxx on 25/11/16.
  */
@@ -39,14 +54,14 @@ public class ContentHelper {
     private DataWrapper dataWrapper;
     Level level;
     private int coinsCount;
+    private int coinsEarned;
     private int correctAnswers;
-    private Fragment currentFragment;
-    private int currentFragmentType;
     public int currentLevel;
     private int currentQuestion;
     private int[] questionsOrder;
     private long timeLeft;
     long request_time;
+    List<Question> questions;
 
     private static ContentHelper instance;
 
@@ -235,6 +250,14 @@ public class ContentHelper {
         return null;
     }
 
+    public void loadData(){
+
+        this.level= getLevel(this.currentLevel);
+        Log.e("MemoryApp","Current phpto level"+this.level);
+        List<Question> questions = this.level.getQuestions();
+        //Log.e("MemoryApp","Total questions in level is "+questions.size()+"and question is "+questions.get(1).getQuestion());
+        setQuestions(questions);
+    }
 
     public int getCurrentLevel() {
         return this.currentLevel;
@@ -247,7 +270,7 @@ public class ContentHelper {
         String levelData = PreferenceManager.get().getString(PreferenceManager.PREF_LEVEL_DATA, BuildConfig.FLAVOR);
         String qOrder = PreferenceManager.get().getString(PreferenceManager.PREF_QUESTIONS_ORDER, BuildConfig.FLAVOR);
 
-        this.coinsCount = PreferenceManager.get().getInt(PreferenceManager.PREF_COINS_COUNT, 100);
+        this.coinsCount = PreferenceManager.get().getInt(PreferenceManager.PREF_COINS_COUNT, 200);
         if (BuildConfig.FLAVOR.equals(levelData)) {
             this.timeLeft = 10;
             this.currentQuestion = 1;
@@ -284,8 +307,8 @@ public class ContentHelper {
     public void resetForNextLevel() {
         this.currentLevel++;
         this.timeLeft = 10;
-        this.currentQuestion = 1;
-        this.correctAnswers = 0;
+        this.coinsEarned=0;
+        this.currentQuestion = 1;;
         if (this.dataWrapper.getLevels().size() < this.currentLevel - 1) {
            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
         }
@@ -294,6 +317,13 @@ public class ContentHelper {
 
     public void resetGame() {
         this.currentLevel =1;
+        this.timeLeft = 10;
+        this.coinsEarned=0;
+        this.currentQuestion = 1;
+        this.correctAnswers = 0;
+
+        this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
+
     }
 
     public int[] getQuestionsOrder() {
@@ -308,6 +338,14 @@ public class ContentHelper {
         return this.currentQuestion;
     }
 
+    public int getCurrentCoins() {
+        return this.coinsCount;
+    }
+
+    public void setCurrentCoins(int coins) {
+         this.coinsCount = coins;
+    }
+
     public void setTimeLeft(long timeLeft) {
         this.timeLeft = timeLeft;
     }
@@ -315,4 +353,24 @@ public class ContentHelper {
     public long getTimeLeft() {
         return this.timeLeft;
     }
+
+    public void setQuestions(List<Question> ques){
+
+        this.questions =ques;
+    }
+    public List<Question> getQuestion(){
+
+        return this.questions;
+    }
+
+    public void setCorrectAnswers(int answers){
+
+        this.correctAnswers =answers;
+    }
+    public int getCorrectAnswers(){
+
+        return this.correctAnswers;
+    }
+
+
 }

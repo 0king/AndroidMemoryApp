@@ -1,10 +1,12 @@
 package g.m;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,7 +22,6 @@ public class ResultActivity extends AppCompatActivity {
 	private AdView mAdView;
 
 	Button next_level,main_menu;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class ResultActivity extends AppCompatActivity {
 		TextView coinsEarned = (TextView) findViewById(R.id.coinsearned);
 		TextView coinsLost = (TextView) findViewById(R.id.coinslost);
 		TextView totalCoins = (TextView) findViewById(R.id.totalCoins);
+        coinsEarned.setText(""+(ContentHelper.getInstance().getCorrectAnswers()*20));
+        coinsLost.setText(""+((3-ContentHelper.getInstance().getCorrectAnswers())*10));
 		coinsText.setTypeface(FontManager.get().getFontDigital());
 		totalCoins.setTypeface(FontManager.get().getFontDigital());
 		next_level.setTypeface(FontManager.get().getFontChargen());
@@ -48,7 +51,6 @@ public class ResultActivity extends AppCompatActivity {
 
 
 		toolbarText.setText("Case #"+server.getCurrentLevel());
-
 
 		mAdView = (AdView) findViewById(R.id.adView1);
 		AdRequest adRequest = new AdRequest.Builder()
@@ -64,6 +66,8 @@ public class ResultActivity extends AppCompatActivity {
 		}else{
 			server.resetForNextLevel();
 		}
+		ContentHelper.getInstance().loadData();
+
         
         server.saveLevelData();
 
@@ -72,7 +76,7 @@ public class ResultActivity extends AppCompatActivity {
 			public void onClick(View v) {
 
 				startActivity(new Intent(ResultActivity.this, PhotoActivity.class));
-				finish();
+
 			}
 		});
 
@@ -82,8 +86,15 @@ public class ResultActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(ResultActivity.this, MainActivity.class));
-                finish();
 			}
 		});
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Log.e("MemoryApp","Back button pressed");
+
+		startActivity(new Intent(ResultActivity.this, MainActivity.class));
 	}
 }
