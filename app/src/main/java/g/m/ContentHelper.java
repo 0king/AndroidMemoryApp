@@ -5,9 +5,12 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.GlideBuilder;
-import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.FutureTarget;
+import com.google.gson.GsonBuilder;
+
+import java.io.File;
+import java.io.IOException;
+
 import g.m.model.DataWrapper;
 import g.m.model.Level;
 import g.m.utils.Constants;
@@ -26,22 +29,6 @@ import okio.BufferedSource;
 import okio.ForwardingSource;
 import okio.Okio;
 import okio.Source;
-
-import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.module.GlideModule;
-import com.bumptech.glide.request.FutureTarget;
-import com.google.gson.GsonBuilder;
-
-
-
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.TimeUnit;
-
-import static g.m.AppController.TAG;
 
 /**
  * Created by kushroxx on 25/11/16.
@@ -303,10 +290,6 @@ public class ContentHelper {
            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
         }
 
-    }
-
-    public void resetGame() {
-        this.currentLevel =1;
     }
 
     public void resetGame() {

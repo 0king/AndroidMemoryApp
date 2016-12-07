@@ -6,10 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-<<<<<<< HEAD
-import android.widget.LinearLayout;
-=======
->>>>>>> kushroxx/master
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -19,16 +15,9 @@ import g.m.utils.FontManager;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
 	Button startBtn, earnBtn;
 	ImageButton miscBtn;
-=======
-	Button startBtn;
-	ImageButton earnBtn;
->>>>>>> kushroxx/master
 	private AdView mAdView;
-	TextView txtview;
-	LinearLayout activity_main;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +43,8 @@ public class MainActivity extends AppCompatActivity {
 		TextView textView3 = (TextView) findViewById(R.id.textView3);
 		TextView textView4 = (TextView) findViewById(R.id.textView4);
 
-<<<<<<< HEAD
 		textView3.setTypeface(FontManager.get().getFontAfl());
 		textView4.setTypeface(FontManager.get().getFontAfl());
-=======
-		textView3.setTypeface(FontManager.get().getFontMinecraft());
-		textView4.setTypeface(FontManager.get().getFontMinecraft());
->>>>>>> kushroxx/master
 
 
 		startBtn.setOnClickListener(new View.OnClickListener() {
@@ -70,12 +54,8 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-<<<<<<< HEAD
 		earnBtn = (Button) findViewById(R.id.button4);
 		earnBtn.setTypeface(FontManager.get().getFontAfl());
-=======
-		earnBtn = (ImageButton) findViewById(R.id.button4);
->>>>>>> kushroxx/master
 
 		earnBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -85,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-<<<<<<< HEAD
 		//FragmentManager fragmentManager = getSupportFragmentManager(); //import android.support.v4.app.FragmentManager;
 		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -107,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
 		});
 
 
-=======
->>>>>>> kushroxx/master
 	}
 
 	public void onBackPressed() {

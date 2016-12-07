@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="g.m.ResultActivity"
-<<<<<<< HEAD
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
@@ -37,9 +36,6 @@
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
-=======
-    android:background="@android:color/background_dark">
->>>>>>> kushroxx/master
 
     <TextView
         android:gravity="center"
@@ -51,7 +47,6 @@
         android:textSize="30sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:id="@+id/textCoins"/>
 
     <LinearLayout
@@ -128,27 +123,6 @@
         android:id="@+id/totalCoins"
         android:textSize="35sp"/>
 
-=======
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
-        android:id="@+id/textView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/background_light" />
-    <Button
-        android:text="Next Case"
-        android:id="@+id/button2"
-        android:textSize="30dp"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/textColor"
-        android:layout_alignTop="@+id/button3"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
->>>>>>> kushroxx/master
-
-
 
         <Button
             android:layout_weight="1"
@@ -174,20 +148,9 @@
         android:text="HOME"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:id="@+id/home"/>
 
     <!-- todo - change banner size -->
-=======
-        android:id="@+id/button3"
-        android:textSize="30dp"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:textColor="@color/textColor"
-        android:layout_above="@+id/adView1"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
-        android:layout_marginBottom="39dp" />
->>>>>>> kushroxx/master
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView1"
@@ -198,9 +161,5 @@
         android:layout_gravity="center">
     </com.google.android.gms.ads.AdView>
 
-<<<<<<< HEAD
 
 </LinearLayout>
-=======
-</RelativeLayout>
->>>>>>> kushroxx/master

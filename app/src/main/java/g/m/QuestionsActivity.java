@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.widget.Button;
 
 import g.m.model.Question;
@@ -34,14 +33,12 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 
 		viewPager = (NonSwipeablePager)findViewById(viewpager);
 		CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-		//todo disable adapter touch event
 		pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		viewPager.setAdapter(pagerAdapter);
 		indicator.setViewPager(viewPager);
 
 	}
 
-	//todo remove fragments from stack
 	/*@Override
 	public void onBackPressed() {
 		super.onBackPressed();
@@ -70,7 +67,6 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 
 		@Override
 		public Fragment getItem(int position) {
-			//todo change each fragment content
 			ContentHelper content = ContentHelper.getInstance();
 			int questionId = content.getQuestionsOrder()[position];
 			if (questionId >= QtsnData.questions.size()) {
@@ -84,15 +80,12 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 
 		@Override
 		public int getCount() {
-			//todo change #questions
 			return NUM_PAGES;
 		}
 	}
 
 	@Override
 	public void onButtonClicked(int buttonId) {
-		//todo button implementation - move to next automatically
-		//todo move to resultActivity after last fragment
         Button button = (Button)findViewById(buttonId);
         String answer = button.getText().toString();
         checkAnswer(button,answer );
@@ -107,8 +100,6 @@ public class QuestionsActivity extends FragmentActivity implements QstnSlideFrag
 	}
 
 	public void checkAnswer(Button button, String answer){
-		//todo change color
-		//todo updatePoints()
         if (currentQuestion.getCorrectAnswer().equals(answer)) {
             button.setBackgroundResource(R.drawable.button_rectangle_green);
         } else {

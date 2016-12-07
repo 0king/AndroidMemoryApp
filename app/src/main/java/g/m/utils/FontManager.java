@@ -93,6 +93,5 @@ public class FontManager {
 		this.zee= Typeface.createFromAsset(context.getAssets(), "fonts/zee.ttf");
 	}
 
-	}
 
 }

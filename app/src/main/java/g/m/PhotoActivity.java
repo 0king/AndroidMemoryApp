@@ -24,33 +24,29 @@ import java.util.List;
 import g.m.model.Level;
 import g.m.model.Question;
 import g.m.utils.Constants;
-<<<<<<< HEAD
 import g.m.utils.FontManager;
-=======
 import g.m.utils.PreferenceManager;
->>>>>>> kushroxx/master
+
 
 public class PhotoActivity extends AppCompatActivity {
 	private Level level;
     ImageView view;
     ContentHelper server;
     public int current_level;
-<<<<<<< HEAD
+
 	//screen timer
 	private static int TIME_OUT = 5000;
     public Handler photoHandler = new Handler();
-=======
-    TextView mTextField;
+    TextView timerText;
     long timer_passed =0;
     long timer_count;
     CountDownTimer timer;
->>>>>>> kushroxx/master
 
     public void timerStart(long timeLengthMilli) {
         timer = new CountDownTimer(timeLengthMilli, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                mTextField.setText("" + (millisUntilFinished / 1000));
+	            timerText.setText("" + (millisUntilFinished / 1000));
                 ContentHelper.getInstance().setTimeLeft((millisUntilFinished / 1000));
             }
 
@@ -76,31 +72,24 @@ public class PhotoActivity extends AppCompatActivity {
         current_level=server.getCurrentLevel()-1;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
-<<<<<<< HEAD
+
         TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_photo);
-		toolbarText.setText("Level: "+current_level);
+		toolbarText.setText("Case #"+current_level+1);
 
 		/* setting fonts for textViews */
-		TextView timer = (TextView) findViewById(R.id.timer);
+		timerText = (TextView) findViewById(R.id.timer);
+
 		TextView textInstruction = (TextView) findViewById(R.id.textInstruction);
-		timer.setTypeface(FontManager.get().getFontDigital());
+		timerText.setTypeface(FontManager.get().getFontDigital());
 		textInstruction.setTypeface(FontManager.get().getFontAfl());
 		toolbarText.setTypeface(FontManager.get().getFontDigital());
 
-
-        //todo pre fetch data
-=======
-       TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
-        txtview.setText("Case #"+(current_level+1));
 
         timer_count = PreferenceManager.get().getLong(PreferenceManager.PREF_TIMER_COUNT, 0);
         if(timer_count == 0){
             timer_count = 10000;
         }
->>>>>>> kushroxx/master
 
-        //todo pre fetch data
-        mTextField = (TextView)findViewById(R.id.timer);
         loadContent();
 
 	}

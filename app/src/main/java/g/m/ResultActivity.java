@@ -27,7 +27,6 @@ public class ResultActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_result);
 		server = ContentHelper.getInstance();
 
-<<<<<<< HEAD
 		main_menu = (Button) findViewById(R.id.home);
 		next_level = (Button) findViewById(R.id.nextLevel);
 
@@ -48,39 +47,23 @@ public class ResultActivity extends AppCompatActivity {
 		toolbarText.setTypeface(FontManager.get().getFontDigital());
 
 
-		toolbarText.setText("Level: "+server.getCurrentLevel());
-=======
-      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_result);
-       // TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_result);
-      //  txtview.setText("Level :"+server.getCurrentLevel());
->>>>>>> kushroxx/master
+		toolbarText.setText("Case #"+server.getCurrentLevel());
+
 
 		mAdView = (AdView) findViewById(R.id.adView1);
 		AdRequest adRequest = new AdRequest.Builder()
 				.addTestDevice("DEB6865817074BF8BC81596532F6D4CB")
 				.build();
 		mAdView.loadAd(adRequest);
-        next_level = (Button) findViewById(R.id.button2);
-		next_level.setTypeface(FontManager.get().getFontChargen());
 
-<<<<<<< HEAD
+        //next_level = (Button) findViewById(R.id.button2);
 
-		if((server.getCurrentLevel()-1) == Constants.total_levels){
-			server.resetGame();
-            next_level.setVisibility(View.INVISIBLE);
-		}else{
-			server.resetForNextLevel();
-		}
-
-=======
 		if((server.getCurrentLevel()) == Constants.total_levels){
 			server.resetGame();
             next_level.setVisibility(View.INVISIBLE);
 		}else{
 			server.resetForNextLevel();
 		}
-
->>>>>>> kushroxx/master
         
         server.saveLevelData();
 
@@ -93,11 +76,7 @@ public class ResultActivity extends AppCompatActivity {
 			}
 		});
 
-<<<<<<< HEAD
-=======
-		main_menu = (Button) findViewById(R.id.button3);
-		main_menu.setTypeface(FontManager.get().getFontChargen());
->>>>>>> kushroxx/master
+		//main_menu = (Button) findViewById(R.id.button3);
 
 		main_menu.setOnClickListener(new View.OnClickListener() {
 			@Override

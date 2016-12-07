@@ -50,19 +50,13 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 		// Inflate the layout for this fragment
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_qstn_slide, container, false);
 
-		//todo use for for loop
-<<<<<<< HEAD
 		Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
 		TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_question);
-		toolbarText.setText("Level: "+ContentHelper.getInstance().getCurrentLevel());
+		toolbarText.setText("Case #"+ContentHelper.getInstance().getCurrentLevel());
 
 		/* setting fonts */
 		toolbarText.setTypeface(FontManager.get().getFontDigital());
-=======
-		//Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
-		//TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
-		//txtview.setText("Level :"+ContentHelper.getInstance().getCurrentLevel());
->>>>>>> kushroxx/master
+
 
         this.buttonAnswers = new Button[5];
         this.buttonAnswers[0] = (Button) rootView.findViewById(R.id.option1);

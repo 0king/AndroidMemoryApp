@@ -3,16 +3,8 @@ package g.m;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -22,13 +14,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-
-
-import g.m.R;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 
 import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
@@ -127,7 +112,6 @@ public class SplashActivity extends AppCompatActivity {
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 
-<<<<<<< HEAD
          if(Utils.isNetworkAvailable(this)) {
              /* if network is available */
 
@@ -144,26 +128,13 @@ public class SplashActivity extends AppCompatActivity {
              }else {
                  server.loadJsonFromPreferences(getApplicationContext());
              }
-=======
-         if( Utils.isNetworkAvailable(this)) {
-
-             server = ContentHelper.getInstance();
->>>>>>> kushroxx/master
-
-             String jsonString=PreferenceManager.get().getString(PreferenceManager.PREF_JSON_STRING, "");
-             Log.e("Memory_App","Json string is "+jsonString);
-             if(BuildConfig.FLAVOR.equals(jsonString)) {
-                 server.loadJsonFromServer(getApplicationContext());
-             }else {
-                 server.loadJsonFromPreferences(getApplicationContext());
-             }
 
            //  new PrefetchData().execute();
              new getAllImages().execute();
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
-<<<<<<< HEAD
+
              /* if newtwork is not available */
              //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
              RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
@@ -171,11 +142,6 @@ public class SplashActivity extends AppCompatActivity {
 
              loading.setVisibility(View.INVISIBLE);
              progress_horizontal.setVisibility(View.INVISIBLE);
-=======
-             //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
-             RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
-             relativeLayout.setAlpha(0.5f); //todo check it @kush
->>>>>>> kushroxx/master
 
             new ShowDialog().createAndShowDialog();
          }
@@ -184,8 +150,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void onDataLoaded (Context context){
-<<<<<<< HEAD
-=======
+
 
         data_loaded = true;
      //   if(image_loaded && data_loaded) {
@@ -202,7 +167,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void onImageLoaded (Context context){
->>>>>>> kushroxx/master
 
         image_loaded = true;
         if(image_loaded && data_loaded) {
