@@ -14,6 +14,7 @@ public class FontManager {
 	private Typeface chargen;
 	private Typeface easports;
 	private Typeface minecraft;
+
 	private Typeface afl;
 	private Typeface aflsolid;
 	Typeface idroid;
@@ -39,7 +40,6 @@ public class FontManager {
 	public Typeface getFontMinecraft() {
 		return this.minecraft;
 	}
-
 	public Typeface getFontAfl() {
 		return this.afl;
 	}
@@ -69,6 +69,7 @@ public class FontManager {
 		return this.zee;
 	}
 
+
 	public static FontManager get() {
 		if (instance == null) {
 			instance = new FontManager();
@@ -80,6 +81,7 @@ public class FontManager {
 		this.chargen = Typeface.createFromAsset(context.getAssets(), "fonts/chargen.ttf");
 		this.easports = Typeface.createFromAsset(context.getAssets(), "fonts/easports.ttf");
 		this.minecraft = Typeface.createFromAsset(context.getAssets(), "fonts/minecraft.ttf");
+
 		this.afl = Typeface.createFromAsset(context.getAssets(), "fonts/afl.ttf");
 		this.aflsolid = Typeface.createFromAsset(context.getAssets(), "fonts/aflsolid.ttf");
 		this.idroid = Typeface.createFromAsset(context.getAssets(), "fonts/idroid.otf");
@@ -89,6 +91,8 @@ public class FontManager {
 		this.gasalt = Typeface.createFromAsset(context.getAssets(), "fonts/gasalt.ttf");
 		this.oxin = Typeface.createFromAsset(context.getAssets(), "fonts/oxin.ttf");
 		this.zee= Typeface.createFromAsset(context.getAssets(), "fonts/zee.ttf");
+	}
+
 	}
 
 }

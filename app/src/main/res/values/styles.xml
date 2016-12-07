@@ -19,7 +19,11 @@
         <style name="MainTextView" parent="@android:style/TextAppearance">
             <item name="android:layout_width">wrap_content</item>
             <item name="android:layout_height">wrap_content</item>
+<<<<<<< HEAD
             <item name="android:textSize">27dp</item>
+=======
+            <item name="android:textSize">20dp</item>
+>>>>>>> kushroxx/master
             <item name="android:textColor">@color/textColor</item>
         </style>
 
@@ -29,6 +33,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+<<<<<<< HEAD
     <style name="OptionButtonStyle">
         <item name="android:textColor">#ffffff</item>
         <item name="android:background">@drawable/buttonshape</item>
@@ -40,6 +45,8 @@
         <item name="android:layout_marginBottom">5dp</item>
     </style>
 
+=======
+>>>>>>> kushroxx/master
     <!--         <item name="android:textColor">@android:color/white</item> -->
 
 </resources>

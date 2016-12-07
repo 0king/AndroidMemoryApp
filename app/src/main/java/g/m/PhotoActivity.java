@@ -1,7 +1,9 @@
 package g.m;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,29 +24,47 @@ import java.util.List;
 import g.m.model.Level;
 import g.m.model.Question;
 import g.m.utils.Constants;
+<<<<<<< HEAD
 import g.m.utils.FontManager;
+=======
+import g.m.utils.PreferenceManager;
+>>>>>>> kushroxx/master
 
 public class PhotoActivity extends AppCompatActivity {
 	private Level level;
     ImageView view;
     ContentHelper server;
     public int current_level;
+<<<<<<< HEAD
 	//screen timer
 	private static int TIME_OUT = 5000;
     public Handler photoHandler = new Handler();
+=======
+    TextView mTextField;
+    long timer_passed =0;
+    long timer_count;
+    CountDownTimer timer;
+>>>>>>> kushroxx/master
 
-    public Runnable photoTimer =   new Runnable() {
+    public void timerStart(long timeLengthMilli) {
+        timer = new CountDownTimer(timeLengthMilli, 1000) {
 
-        @Override
-        public void run() {
-            // This method will be executed once the timer is over
-            Intent i = new Intent(PhotoActivity.this, QuestionsActivity.class);
-            startActivity(i);
+            public void onTick(long millisUntilFinished) {
+                mTextField.setText("" + (millisUntilFinished / 1000));
+                ContentHelper.getInstance().setTimeLeft((millisUntilFinished / 1000));
+            }
 
-            //close this activity
-            finish();
-        }
-    };
+            public void onFinish() {
+
+                ContentHelper.getInstance().setTimeLeft(0);
+                Intent i = new Intent(PhotoActivity.this, QuestionsActivity.class);
+                startActivity(i);
+
+                //close this activity
+                finish();
+            }
+        }.start();
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +76,7 @@ public class PhotoActivity extends AppCompatActivity {
         current_level=server.getCurrentLevel()-1;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
+<<<<<<< HEAD
         TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_photo);
 		toolbarText.setText("Level: "+current_level);
 
@@ -68,10 +89,19 @@ public class PhotoActivity extends AppCompatActivity {
 
 
         //todo pre fetch data
+=======
+       TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
+        txtview.setText("Case #"+(current_level+1));
 
+        timer_count = PreferenceManager.get().getLong(PreferenceManager.PREF_TIMER_COUNT, 0);
+        if(timer_count == 0){
+            timer_count = 10000;
+        }
+>>>>>>> kushroxx/master
+
+        //todo pre fetch data
+        mTextField = (TextView)findViewById(R.id.timer);
         loadContent();
-
-        photoHandler.postDelayed(photoTimer, TIME_OUT);
 
 	}
 
@@ -79,39 +109,72 @@ public class PhotoActivity extends AppCompatActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-        photoHandler.removeCallbacks(photoTimer);
+        //photoHandler.removeCallbacks(photoTimer);
 		//todo stop handler
+        timer.cancel();
+        finish();
 	}
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        timerStart(ContentHelper.getInstance().getTimeLeft()*1000);
+    }
 
     public void loadContent(){
 
 		Log.e("Memory_app","Current Lvel is "+current_level);
 
-        Glide.with(getApplicationContext())
-                .load(Constants.IMAGE_URL[current_level])
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-        .listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                Log.i("Memory_app", "Listener onException: " + e.toString());
-                return false;
-            }
+        if(current_level==0){
+            Glide.with(getApplicationContext())
+                    .load(Uri.parse("file:///android_asset/level1.jpg"))
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                     .into(new SimpleTarget<GlideDrawable>(400, 300) {
+                        @Override
+                        public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                            Log.i("Memory_app", "GlideDrawalble = '" + resource + "'");
+                            view.setImageDrawable(resource.getCurrent());
+                        }
+                    });
 
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                Log.i("Memory_app", "onResourceReady with resource = " + resource);
-                Log.i("Memory_app", "onResourceReady from memory cache = " + isFromMemoryCache);
-                return false;
-            }
-        })
-                .into(new SimpleTarget<GlideDrawable>(400, 300) {
-            @Override
-            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                Log.i("Memory_app", "GlideDrawalble = '" + resource + "'");
-                view.setImageDrawable(resource.getCurrent());
-            }
-        });
+        }else {
 
+            Glide.with(getApplicationContext())
+                    .load(Constants.IMAGE_URL[current_level])
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            Log.i("Memory_app", "Listener onException: " + e.toString());
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            Log.i("Memory_app", "onResourceReady with resource = " + resource);
+                            Log.i("Memory_app", "onResourceReady from memory cache = " + isFromMemoryCache);
+                            return false;
+                        }
+                    })
+                    .into(new SimpleTarget<GlideDrawable>(400, 300) {
+                        @Override
+                        public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                            Log.i("Memory_app", "GlideDrawalble = '" + resource + "'");
+                            view.setImageDrawable(resource.getCurrent());
+                        }
+                    });
+        }
+
+
+
+        timerStart(ContentHelper.getInstance().getTimeLeft()*1000);
 
         this.level= server.getLevel(current_level);
         List<Question> questions = this.level.getQuestions();

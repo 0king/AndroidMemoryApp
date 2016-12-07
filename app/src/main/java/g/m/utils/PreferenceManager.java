@@ -13,6 +13,9 @@ public class PreferenceManager {
     public static final String PREF_CORRECT_COUNT = "correct_count";
     public static final String PREF_CURRENT_LEVEL = "current_level";
     public static final String PREF_JSON_STRING = "json_string";
+
+    public static final String PREF_TIMER_COUNT = "timer_count";
+
     public static final String PREF_DAILY_REWARD = "daily_reward";
     public static final String PREF_FIRST_LAUNCH = "first_launch";
     public static final String PREF_LAUNCH_COUNT = "launch_count";

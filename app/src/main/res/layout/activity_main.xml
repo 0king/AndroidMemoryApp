@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="g.m.MainActivity"
     android:background="@color/colorPrimary"
+<<<<<<< HEAD
     android:orientation="vertical">
     <!--
         <FrameLayout
@@ -14,6 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>-->
+=======
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal|center">
+>>>>>>> kushroxx/master
 
     <ImageButton
         android:layout_margin="20dp"
@@ -23,6 +29,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
@@ -99,3 +106,121 @@
 
 
 </LinearLayout>
+=======
+        android:layout_height="wrap_content"
+        ads:adSize="LARGE_BANNER"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        ads:adUnitId="@string/banner_home_footer">
+    </com.google.android.gms.ads.AdView>
+
+
+    <!--    android:layout_above="@+id/button4"
+    android:layout_alignLeft="@+id/button4"
+    android:layout_alignStart="@+id/button4"-->
+
+    <!--         android:background="@drawable/buttonshape" -->
+
+<!--    android:textColor="@color/textColor"
+    android:textSize="20sp"
+    android:fontFamily="monospace"-->
+
+
+
+
+<!--    android:shadowColor="#A8A8A8"
+    android:shadowDx="0"
+    android:shadowDy="0"
+    android:shadowRadius="2"-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/mainbraindark"
+        android:id="@+id/imageView"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/level_info"
+        android:textSize="36sp"
+        android:layout_marginTop="22dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/imageView"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="false"
+        android:layout_above="@+id/startBtn" />
+
+    <TextView
+        style="@style/MainTextView"
+        android:text="Observe the picture"
+        android:layout_alignTop="@+id/level_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:id="@+id/textView3"/>
+
+    <!--   android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="cursive"
+        android:textStyle="normal|bold"
+
+             android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="2"-->
+
+
+    <ImageButton
+        android:visibility="gone"
+        style="@style/MainOtherButtons"
+        android:id="@+id/button4"
+        android:background="@mipmap/moneywhite35"/>
+
+
+    <TextView
+        style="@style/MainTextView"
+        android:text="Answer the questions"
+        android:id="@+id/textView4"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"/>
+
+
+<!--    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+    android:fontFamily="cursive"
+    android:textStyle="normal|bold"-->
+
+
+    <!-- todo: change font -->
+    <Button
+        android:text="PLAY"
+        android:id="@+id/startBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_marginBottom="102dp"
+        android:textSize="50dp"
+        android:textColor="@color/textColor"
+        android:layout_above="@+id/adView"
+        android:layout_centerHorizontal="true"/>
+
+    <!--
+        android:fontFamily="sans-serif-medium"
+                android:textStyle="normal|bold" -->
+
+    <!--
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" -->
+
+    <ImageButton
+        android:background="@mipmap/settingsgreen37"
+        style="@style/MainOtherButtons"
+        android:id="@+id/settings"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!--
+        android:background="?android:attr/selectableItemBackground" - Doing it this way ensures the button is borderless and the correct size. -->
+</RelativeLayout>
+>>>>>>> kushroxx/master
