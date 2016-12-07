@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import g.m.model.Question;
+import g.m.utils.FontManager;
 
 
 /**
@@ -51,8 +52,11 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 
 		//todo use for for loop
 		Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_question);
-		TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_question);
-		txtview.setText("Level: "+ContentHelper.getInstance().getCurrentLevel());
+		TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_question);
+		toolbarText.setText("Level: "+ContentHelper.getInstance().getCurrentLevel());
+
+		/* setting fonts */
+		toolbarText.setTypeface(FontManager.get().getFontDigital());
 
         this.buttonAnswers = new Button[5];
         this.buttonAnswers[0] = (Button) rootView.findViewById(R.id.option1);

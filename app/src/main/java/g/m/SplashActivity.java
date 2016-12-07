@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
     String now_playing, earned;
     ContentHelper server;
-    ProgressBar progress,progress_horizontal;
+    ProgressBar progress,progress_horizontal; //todo kush - remove the unnecessary one
 
 
     private static SplashActivity instance;
@@ -42,6 +42,8 @@ public class SplashActivity extends AppCompatActivity {
             builder.setMessage("Connect to Internet and try again");
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+
+
 
         }
 
@@ -77,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
 
         /* setting font of "loading" textview */
         //Typeface chargen = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/chargen.ttf");
-        TextView loading = (TextView) findViewById(R.id.loading);
+        TextView loading = (TextView) findViewById(R.id.loadingText);
         loading.setTypeface(FontManager.get().getFontChargen());
 
         /* setting font of "detective memory" texttviews */
@@ -108,7 +110,12 @@ public class SplashActivity extends AppCompatActivity {
 
        //  Log.e("Memory_app","Cached Value "+already_cached+"network info "+ Utils.isNetworkAvailable(this));
 
-         if( Utils.isNetworkAvailable(this)) {
+         if(Utils.isNetworkAvailable(this)) {
+             /* if network is available */
+
+             /* set visibility to true after disabled when network unavailable */
+             loading.setVisibility(View.VISIBLE);
+             progress_horizontal.setVisibility(View.VISIBLE);
 
              server = ContentHelper.getInstance();
 
@@ -124,9 +131,13 @@ public class SplashActivity extends AppCompatActivity {
        //  PreferenceManager.get().putInt(PreferenceManager.PREF_ALREADY_CACHED, 1);
 
          }else {
+             /* if newtwork is not available */
              //ImageView img_view = (ImageView)findViewById(R.id.imgLogo); //i've removed the image
              RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
-             relativeLayout.setAlpha(0.5f); //todo check it @kush
+             relativeLayout.setAlpha(0.5f);
+
+             loading.setVisibility(View.INVISIBLE);
+             progress_horizontal.setVisibility(View.INVISIBLE);
 
             new ShowDialog().createAndShowDialog();
          }

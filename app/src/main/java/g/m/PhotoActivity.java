@@ -22,6 +22,7 @@ import java.util.List;
 import g.m.model.Level;
 import g.m.model.Question;
 import g.m.utils.Constants;
+import g.m.utils.FontManager;
 
 public class PhotoActivity extends AppCompatActivity {
 	private Level level;
@@ -29,7 +30,7 @@ public class PhotoActivity extends AppCompatActivity {
     ContentHelper server;
     public int current_level;
 	//screen timer
-	private static int TIME_OUT = 1000;
+	private static int TIME_OUT = 5000;
     public Handler photoHandler = new Handler();
 
     public Runnable photoTimer =   new Runnable() {
@@ -55,8 +56,16 @@ public class PhotoActivity extends AppCompatActivity {
         current_level=server.getCurrentLevel()-1;
 
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_photo);
-        TextView txtview = (TextView) toolbar.findViewById(R.id.current_level_photo);
-        txtview.setText("Level: "+current_level);
+        TextView toolbarText = (TextView) toolbar.findViewById(R.id.current_level_photo);
+		toolbarText.setText("Level: "+current_level);
+
+		/* setting fonts for textViews */
+		TextView timer = (TextView) findViewById(R.id.timer);
+		TextView textInstruction = (TextView) findViewById(R.id.textInstruction);
+		timer.setTypeface(FontManager.get().getFontDigital());
+		textInstruction.setTypeface(FontManager.get().getFontAfl());
+		toolbarText.setTypeface(FontManager.get().getFontDigital());
+
 
         //todo pre fetch data
 

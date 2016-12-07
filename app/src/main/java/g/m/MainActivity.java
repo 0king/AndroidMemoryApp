@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -15,10 +16,11 @@ import g.m.utils.FontManager;
 
 public class MainActivity extends AppCompatActivity {
 
-	Button startBtn;
-	ImageButton earnBtn;
+	Button startBtn, earnBtn;
+	ImageButton miscBtn;
 	private AdView mAdView;
 	TextView txtview;
+	LinearLayout activity_main;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 		TextView textView3 = (TextView) findViewById(R.id.textView3);
 		TextView textView4 = (TextView) findViewById(R.id.textView4);
 
-		textView3.setTypeface(FontManager.get().getFontAflsolid());
-		textView4.setTypeface(FontManager.get().getFontAflsolid());
+		textView3.setTypeface(FontManager.get().getFontAfl());
+		textView4.setTypeface(FontManager.get().getFontAfl());
 
 
 		startBtn.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		earnBtn = (ImageButton) findViewById(R.id.button4);
+		earnBtn = (Button) findViewById(R.id.button4);
+		earnBtn.setTypeface(FontManager.get().getFontAfl());
 
 		earnBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -64,6 +67,27 @@ public class MainActivity extends AppCompatActivity {
 				finish();
 			}
 		});
+
+		//FragmentManager fragmentManager = getSupportFragmentManager(); //import android.support.v4.app.FragmentManager;
+		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+		//activity_main = (LinearLayout) findViewById(R.id.activity_main);
+		miscBtn = (ImageButton) findViewById(R.id.miscBtn);
+		miscBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//fragmentTransaction.add(R.id.activity_main, new ExtrasFragment());
+				//fragmentTransaction.commit();
+				//Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
+				getSupportFragmentManager()
+						.beginTransaction()
+						.add(android.R.id.content,new ExtrasFragment())
+						.addToBackStack(null)
+						.commit();
+				//finish(); //this method ends the activity
+			}
+		});
+
 
 	}
 

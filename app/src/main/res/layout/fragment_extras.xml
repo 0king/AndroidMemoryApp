@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+    android:background="@color/colorPrimary">
+
+    <Button
+        android:text="Reset Game"
+        android:id="@+id/reset"
+        style="@style/OptionButtonStyle"/>
+
+    <Button
+        android:text="Share the App"
+        android:id="@+id/share"
+        style="@style/OptionButtonStyle"/>
+
+    <Button
+        android:text="Rate the App"
+        android:id="@+id/rate"
+        style="@style/OptionButtonStyle"/>
+
+    <Button
+        android:text="Contact Us"
+        android:id="@+id/contact"
+        style="@style/OptionButtonStyle"/>
+
+    <Button
+        android:text="About Us"
+        android:id="@+id/about"
+        style="@style/OptionButtonStyle"/>
+
+
+
+
+</LinearLayout>
