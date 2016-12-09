@@ -8,9 +8,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="g.m.QuestionsActivity"
     android:background="@color/colorPrimaryDark">
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/greendarker"
         android:theme="?attr/actionBarTheme"
         android:minHeight="60dp"
@@ -39,11 +40,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/coin_text_question"
-                android:textSize="25dp"
+                android:textSize="20sp"
                 android:text="25"
                 android:layout_toStartOf="@+id/coin"
                 android:layout_toLeftOf="@+id/coin"
-                android:textColor="@android:color/holo_orange_dark"
+                android:textColor="@color/textColor"
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_marginLeft="20dp"
                 android:layout_alignBottom="@+id/coin"
@@ -69,7 +70,7 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <g.m.NonSwipeablePager
+<!--    <g.m.NonSwipeablePager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="490dp"
@@ -77,9 +78,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_alignBottom="@+id/indicator">
+    </g.m.NonSwipeablePager>-->
+
+    <g.m.NonSwipeablePager
+        android:layout_marginTop="60dp"
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     </g.m.NonSwipeablePager>
 
-    <me.relex.circleindicator.CircleIndicator
+<!--    <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,9 +98,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignBottom="@+id/toolbar_question"
         android:background="@color/colorPrimary"
-        android:layout_below="@+id/toolbar_question" />
+        android:layout_below="@+id/toolbar_question" />-->
 
-   <!-- todo shift the Toolbar from fragment to this activity -->
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:ci_drawable="@color/textColor"
+        app:ci_width="1dp"
+        app:ci_height="1dp"
+        android:layout_marginTop="60dp"/>
 
 
 </RelativeLayout>
