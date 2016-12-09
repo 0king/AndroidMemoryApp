@@ -5,7 +5,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 /**
  * Created by 5dr on 07/12/16.
@@ -20,13 +19,13 @@ public class AboutDialogFragment extends DialogFragment { //import android.suppo
 		//getDialog().getWindow().requestFeature(1);
 		getDialog().setTitle("About Us");
 
-		Button dismiss = (Button) view.findViewById(R.id.dismissBtn);
+/*		Button dismiss = (Button) view.findViewById(R.id.dismissBtn);
 		dismiss.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dismiss();//The fragment dialog dismiss() method dismiss the dialog by removes the fragment from fragment manager, and then commit the fragment transaction.
 			}
-		});
+		});*/
 
 		return view;
 	}

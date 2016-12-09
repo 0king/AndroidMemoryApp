@@ -17,7 +17,7 @@
     <ImageButton
         android:background="@mipmap/menu37"
         style="@style/MainOtherButtons"
-        android:id="@+id/settingsBtn"
+        android:id="@+id/miscButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="20dp" />
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/coin_text"
             android:textSize="25dp"
-            android:text="25dp"
+            android:text="25"
             android:layout_toStartOf="@+id/coin"
             android:layout_toLeftOf="@+id/coin"
             android:textColor="@android:color/holo_orange_dark"

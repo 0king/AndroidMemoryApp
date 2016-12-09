@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/coin_text_question"
                 android:textSize="25dp"
-                android:text="25dp"
+                android:text="25"
                 android:layout_toStartOf="@+id/coin"
                 android:layout_toLeftOf="@+id/coin"
                 android:textColor="@android:color/holo_orange_dark"

@@ -17,7 +17,7 @@ import g.m.utils.FontManager;
 public class MainActivity extends AppCompatActivity {
 
 	Button startBtn, earnBtn;
-	ImageButton settingsBtn;
+	ImageButton miscBtn;
 	private AdView mAdView;
 
 	@Override
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 		//activity_main = (LinearLayout) findViewById(R.id.activity_main);
-        settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
+        miscBtn = (ImageButton) findViewById(R.id.miscButton);
+        miscBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//fragmentTransaction.add(R.id.activity_main, new ExtrasFragment());

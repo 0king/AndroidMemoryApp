@@ -3,19 +3,34 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/colorPrimary"
+    android:layout_margin="20dp">
 
     <TextView
+        android:gravity="center"
+        android:textStyle="bold"
         android:layout_margin="10dp"
-        android:text="Hi, we are Dogges!!!"
+        android:textColor="@color/textColor"
+        android:text="Detective Memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:text="Dismiss"
-        android:id="@+id/dismissBtn"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher2"/>
+
+    <TextView
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:textColor="@color/textColor"
+        android:text="This app has been designed to test and improve a person's memory and observational skills, which are useful in our day to day life. On daily exercise, memory improvements can be seen. All the best!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+
+
 
 
 
