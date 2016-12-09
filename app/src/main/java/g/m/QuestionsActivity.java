@@ -40,6 +40,7 @@ public class QuestionsActivity extends FragmentActivity {
 
         txtview=(TextView)findViewById(R.id.coin_text_question);
         txtview.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
+		txtview.setTypeface(FontManager.get().getFontChargen());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_question);
         TextView level_current = (TextView)toolbar.findViewById(R.id.current_level_question);
@@ -128,7 +129,7 @@ public class QuestionsActivity extends FragmentActivity {
     public void changescore(){
 
         txtview.setText(""+ContentHelper.getInstance().getCurrentCoins());
-        txtview.setTypeface(FontManager.get().getFontChargen());
+        //txtview.setTypeface(FontManager.get().getFontChargen());
     }
 
 }
