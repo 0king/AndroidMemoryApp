@@ -4,7 +4,8 @@
              android:layout_height="match_parent"
               android:orientation="vertical"
               android:gravity="center"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+              android:clickable="true">
 
     <Button
         android:text="Reset Game"

@@ -107,7 +107,7 @@ public class FontManager {
 
 		this.afl = Typeface.createFromAsset(context.getAssets(), "fonts/afl.ttf");
 		this.aflsolid = Typeface.createFromAsset(context.getAssets(), "fonts/aflsolid.ttf");
-		this.idroid = Typeface.createFromAsset(context.getAssets(), "fonts/IDroid.otf");
+		this.idroid = Typeface.createFromAsset(context.getAssets(), "fonts/idroid.otf");
 		this.android7 = Typeface.createFromAsset(context.getAssets(), "fonts/android7.ttf");
 		this.digital = Typeface.createFromAsset(context.getAssets(), "fonts/digital.otf");
 		this.district = Typeface.createFromAsset(context.getAssets(), "fonts/district.ttf");
@@ -117,7 +117,7 @@ public class FontManager {
 		this.light= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light.ttf");
 		this.regular= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Regular.ttf");
 		this.extrabold= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-ExtraBold.ttf");
-		this.zee= Typeface.createFromAsset(context.getAssets(), "fonts/zee.TTF");
+		this.zee= Typeface.createFromAsset(context.getAssets(), "fonts/zee.ttf");
         this.fontSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-SemiBold.ttf");
 	}
 
