@@ -1,6 +1,7 @@
 package g.m;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -328,7 +329,7 @@ public class ContentHelper {
 
         loadData();
 
-        MainActivity.setCoinsCount();
+        MainActivity.resetActivity();
 
     }
 
@@ -376,6 +377,24 @@ public class ContentHelper {
     public int getCorrectAnswers(){
 
         return this.correctAnswers;
+    }
+
+    public void playButtonClickSound(Context context) {
+        if (PreferenceManager.get().getBoolean(PreferenceManager.PREF_SOUND_ENABLED, true)) {
+            MediaPlayer.create(context, R.raw.button_click).start();
+        }
+    }
+
+    public void playCorrectAnswerSound(Context context) {
+        if (PreferenceManager.get().getBoolean(PreferenceManager.PREF_SOUND_ENABLED, true)) {
+            MediaPlayer.create(context, R.raw.answer_correct).start();
+        }
+    }
+
+    public void playIncorrectAnswerSound(Context context) {
+        if (PreferenceManager.get().getBoolean(PreferenceManager.PREF_SOUND_ENABLED, true)) {
+            MediaPlayer.create(context, R.raw.answer_incorrect).start();
+        }
     }
 
 

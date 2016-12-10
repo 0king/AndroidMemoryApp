@@ -73,10 +73,14 @@ public class ResultActivity extends AppCompatActivity {
 
         //next_level = (Button) findViewById(R.id.button2);
 
-
-		if((server.getCurrentLevel()) == Constants.total_levels || server.getCurrentCoins() < 0){
-			server.resetGame();
+        if(server.getCurrentCoins() < 10) {
             next_level.setVisibility(View.INVISIBLE);
+            new EarnCoins().show(getSupportFragmentManager(), "EarnCoins");
+        }
+
+		if((server.getCurrentLevel()) == Constants.total_levels ){
+            next_level.setVisibility(View.INVISIBLE);
+            new GameOverDialogFragment().show(getSupportFragmentManager(), "GameOver");
 		}else{
 			server.resetForNextLevel();
 		}
@@ -95,7 +99,7 @@ public class ResultActivity extends AppCompatActivity {
         next_level.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
+                ContentHelper.getInstance().playButtonClickSound(getApplicationContext());
 				startActivity(new Intent(ResultActivity.this, PhotoActivity.class));
                 finish();
 
@@ -107,6 +111,7 @@ public class ResultActivity extends AppCompatActivity {
 		main_menu.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				ContentHelper.getInstance().playButtonClickSound(getApplicationContext());
 				startActivity(new Intent(ResultActivity.this, MainActivity.class));
                 finish();
 			}

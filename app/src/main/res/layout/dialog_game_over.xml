@@ -6,53 +6,35 @@
     android:background="@color/colorPrimary"
     android:layout_margin="20dp"
     android:weightSum="1">
-
     <TextView
-        android:text="Get Coins"
+        android:id="@+id/txt_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title"
         android:textColor="#ffffff"
         android:textSize="25sp"
         android:paddingLeft="30dp"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp"
+        android:text ="@string/dialog_title_game_over"/>
 
     <TextView
-        android:text="Need to get more coins to proceed further??"
+        android:id="@+id/txt_dialog_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/message"
         android:layout_weight="0.07"
         android:textColor="#ffffff"
         android:paddingLeft="30dp"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:text ="@string/dialog_message_game_over"/>/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
-
         <TextView
-            android:text="Cancel"
+            android:id="@+id/txt_button_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/cancel"
-            android:paddingLeft="20dp"
             android:textColor="@color/textColor"
-            android:fontFamily="serif-monospace"
-            android:textSize="19sp" />
-
-        <TextView
-            android:text="Earn Coins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/message"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/earncoins"
-            android:paddingRight="30dp"
-            android:textColor="@color/textColor"
-            android:textSize="19sp"
-            android:fontFamily="casual" />
+            android:text="Ok"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 </LinearLayout>

@@ -23,7 +23,14 @@ public class FontManager {
 	Typeface district;
 	Typeface gasalt;
 	Typeface oxin;
+	Typeface bold;
+	Typeface light;
+	Typeface regular;
+	Typeface extrabold;
 	Typeface zee;
+    private Typeface fontSemiBold;
+
+
 
 
 	private FontManager() {
@@ -65,9 +72,25 @@ public class FontManager {
 	public Typeface getFontOxin() {
 		return this.oxin;
 	}
-	public Typeface getFontZee() {
-		return this.zee;
+	public Typeface getFontBold() {
+		return this.bold;
 	}
+    public Typeface getFontLight() {
+        return this.light;
+    }
+    public Typeface getFontRegular() {
+        return this.regular;
+    }
+    public Typeface getFontExtraBold() {
+        return this.extrabold;
+    }
+    public Typeface getFontZee() {
+        return this.zee;
+    }
+    public Typeface getFontSemiBold() {
+        return this.fontSemiBold;
+    }
+
 
 
 	public static FontManager get() {
@@ -90,7 +113,12 @@ public class FontManager {
 		this.district = Typeface.createFromAsset(context.getAssets(), "fonts/district.ttf");
 		this.gasalt = Typeface.createFromAsset(context.getAssets(), "fonts/gasalt.ttf");
 		this.oxin = Typeface.createFromAsset(context.getAssets(), "fonts/oxin.ttf");
+		this.bold= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Bold.ttf");
+		this.light= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Light.ttf");
+		this.regular= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Regular.ttf");
+		this.extrabold= Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-ExtraBold.ttf");
 		this.zee= Typeface.createFromAsset(context.getAssets(), "fonts/zee.TTF");
+        this.fontSemiBold = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-SemiBold.ttf");
 	}
 
 

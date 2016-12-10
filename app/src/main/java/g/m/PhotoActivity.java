@@ -1,6 +1,7 @@
 package g.m;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -36,6 +37,7 @@ public class PhotoActivity extends AppCompatActivity {
     TextView mTextField;
     private CountDownTimer timer_clock;
     boolean isCancelled = false;
+    int sound=1 ;
 
  	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 		TextView textInstruction = (TextView) findViewById(R.id.textInstruction);
         mTextField.setTypeface(FontManager.get().getFontDigital());
-		textInstruction.setTypeface(FontManager.get().getFontOxin());
+		textInstruction.setTypeface(FontManager.get().getFontChargen());
 
 
         //todo pre fetch data

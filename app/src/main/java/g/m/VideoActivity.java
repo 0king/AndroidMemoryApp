@@ -129,13 +129,13 @@ package g.m;
                     // AdColony.requestInterstitial( ZONE_ID, this, ad_options );
                     Log.d( TAG, "onExpiring" );
                     finish();
-                    startActivity(new Intent(VideoActivity.this, MainActivity.class));
+                   // startActivity(new Intent(VideoActivity.this, MainActivity.class));
                 }
                 @Override
                 public void onClosed(AdColonyInterstitial ad) {
                     Log.d( TAG, "on CLosing" );
                     finish();
-                    startActivity(new Intent(VideoActivity.this, MainActivity.class));
+                    //startActivity(new Intent(VideoActivity.this, MainActivity.class));
                 }
             };
         }

@@ -67,12 +67,16 @@
             style="@style/MainTextView"
             android:text="Test Your Brain Skills"
             android:textAlignment="center"
-            android:id="@+id/textView3"/>
+            android:id="@+id/textView3"
+            android:textStyle="normal|bold" />
         <TextView
             style="@style/MainTextView"
             android:text="Answer the questions"
             android:textAlignment="center"
-            android:id="@+id/textView4"/>
+            android:id="@+id/textView4"
+            android:textStyle="normal|bold"
+            android:layout_width="wrap_content"
+            android:paddingTop="10dp" />
 
         <ImageView
             android:layout_weight="1.73"

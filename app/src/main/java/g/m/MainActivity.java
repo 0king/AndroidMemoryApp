@@ -16,13 +16,14 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import g.m.utils.Constants;
 import g.m.utils.FontManager;
 import g.m.utils.PreferenceManager;
 import g.m.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-	Button startBtn, earnBtn;
+	public static Button startBtn, earnBtn;
 	ImageButton settingsBtn;
 	private AdView mAdView;
     public static TextView coin_text;
@@ -61,11 +62,16 @@ public class MainActivity extends AppCompatActivity {
 		textView3.setTypeface(FontManager.get().getFontAndroid7());
 		textView4.setTypeface(FontManager.get().getFontAndroid7());
 
+        if((ContentHelper.getInstance().getCurrentLevel()) == Constants.total_levels ) {
+            startBtn.setVisibility(View.INVISIBLE);
+            new GameOverDialogFragment().show(getSupportFragmentManager(), "GameOver");
+        }
 
 		startBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(ContentHelper.getInstance().getCurrentCoins()<0){
+                ContentHelper.getInstance().playButtonClickSound(getApplicationContext());
+				if(ContentHelper.getInstance().getCurrentCoins()<= 10){
                     new EarnCoins().show(getSupportFragmentManager(), "EarnCoins");
 
 				}else {
@@ -98,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         settingsBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				ContentHelper.getInstance().playButtonClickSound(getApplicationContext());
 				//fragmentTransaction.add(R.id.activity_main, new ExtrasFragment());
 				//fragmentTransaction.commit();
 				//Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
@@ -144,8 +151,10 @@ public class MainActivity extends AppCompatActivity {
 		super.onDestroy();
 	}
 
-    public static void setCoinsCount(){
+    public static void resetActivity(){
 
+
+        startBtn.setVisibility(View.VISIBLE);
         Log.e("MemoryApp","Coins Updated :"+ContentHelper.getInstance().getCurrentCoins());
         coin_text.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
         coin_text.setTypeface(FontManager.get().getFontChargen());

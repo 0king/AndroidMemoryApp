@@ -12,14 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ExtrasFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ExtrasFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ExtrasFragment extends Fragment implements View.OnClickListener{
 
 	View rootView;
@@ -56,18 +49,23 @@ public class ExtrasFragment extends Fragment implements View.OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()){
 			case R.id.reset:
+                ContentHelper.getInstance().playButtonClickSound(getActivity().getApplicationContext());
 				resetGame();
 				break;
 			case R.id.rate:
+                ContentHelper.getInstance().playButtonClickSound(getActivity().getApplicationContext());
 				rateApp();
 				break;
 			case R.id.share:
+                ContentHelper.getInstance().playButtonClickSound(getActivity().getApplicationContext());
 				shareApp();
 				break;
 			case R.id.contact:
+                ContentHelper.getInstance().playButtonClickSound(getActivity().getApplicationContext());
 				sendFeedbackViaEmail();
 				break;
 			case R.id.about:
+                ContentHelper.getInstance().playButtonClickSound(getActivity().getApplicationContext());
 				showAboutDialog();
 				break;
 		}

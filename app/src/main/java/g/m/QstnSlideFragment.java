@@ -133,6 +133,7 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
         //todo updatePoints()
         if (question.getCorrectAnswer().equals(answer)) {
             Log.e("MemoryApp","Correct Answer");
+            ContentHelper.getInstance().playCorrectAnswerSound(activity.getApplicationContext());
             button.setBackgroundResource(R.drawable.button_rectangle_green);
             int current_coins = ContentHelper.getInstance().getCurrentCoins();
             ContentHelper.getInstance().setCurrentCoins(current_coins+20);
@@ -140,6 +141,7 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
             ContentHelper.getInstance().setCorrectAnswers(correct_answers+1);
         } else {
             Log.e("MemoryApp","Wrong Answer");
+            ContentHelper.getInstance().playIncorrectAnswerSound(activity.getApplicationContext());
             button.setBackgroundResource(R.drawable.button_rectangle_red);
             int current_coins = ContentHelper.getInstance().getCurrentCoins();
             ContentHelper.getInstance().setCurrentCoins(current_coins-10);

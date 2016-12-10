@@ -5,4 +5,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="banner_home_footer">ca-app-pub-5861853391315075/9571614140</string>
     <string name="interstitial_add">ca-app-pub-5861853391315075/2346274944</string>
+        <string name="dialog_message_game_over">"Congratulations! You've completed all levels. More levels coming soon, stay tuned for the next update.
+
+In the meantime you can replay the existing levels with new random questions by clicking the reset button in Settings."</string>
+
+    <string name="dialog_title_game_over">Game Complete</string>
 </resources>
