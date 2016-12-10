@@ -1,7 +1,11 @@
 package g.m;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +17,16 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import g.m.utils.FontManager;
+import g.m.utils.PreferenceManager;
+import g.m.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
 	Button startBtn, earnBtn;
-	ImageButton miscBtn;
+	ImageButton settingsBtn;
 	private AdView mAdView;
+    public static TextView coin_text;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,43 +53,49 @@ public class MainActivity extends AppCompatActivity {
 		//Typeface minecraft = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/minecraft.ttf");
 		TextView textView3 = (TextView) findViewById(R.id.textView3);
 		TextView textView4 = (TextView) findViewById(R.id.textView4);
-        TextView coin_text = (TextView) findViewById(R.id.coin_text);
+        coin_text = (TextView) findViewById(R.id.coin_text);
         Log.e("MemoryApp","Coins :"+ContentHelper.getInstance().getCurrentCoins());
         coin_text.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
         coin_text.setTypeface(FontManager.get().getFontChargen());
 
-		textView3.setTypeface(FontManager.get().getFontAfl());
-		textView4.setTypeface(FontManager.get().getFontAfl());
+		textView3.setTypeface(FontManager.get().getFontAndroid7());
+		textView4.setTypeface(FontManager.get().getFontAndroid7());
 
 
 		startBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (ContentHelper.getInstance().getTimeLeft() > 0) {
-					startActivity(new Intent(MainActivity.this, PhotoActivity.class));
-				} else {
-					startActivity(new Intent(MainActivity.this, QuestionsActivity.class));
+				if(ContentHelper.getInstance().getCurrentCoins()<0){
+                    new EarnCoins().show(getSupportFragmentManager(), "EarnCoins");
+
+				}else {
+					if (ContentHelper.getInstance().getTimeLeft() > 0) {
+						startActivity(new Intent(MainActivity.this, PhotoActivity.class));
+						finish();
+					} else {
+						startActivity(new Intent(MainActivity.this, QuestionsActivity.class));
+						finish();
+					}
 				}
 			}
 		});
-
+/*
 		earnBtn = (Button) findViewById(R.id.button4);
-		earnBtn.setTypeface(FontManager.get().getFontAfl());
+		earnBtn.setTypeface(FontManager.get().getFontChargen());
 
 		earnBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, VideoActivity.class));
-				finish();
+
 			}
-		});
+		});*/
 
 		//FragmentManager fragmentManager = getSupportFragmentManager(); //import android.support.v4.app.FragmentManager;
 		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
 		//activity_main = (LinearLayout) findViewById(R.id.activity_main);
-        miscBtn = (ImageButton) findViewById(R.id.miscButton);
-        miscBtn.setOnClickListener(new View.OnClickListener() {
+        settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//fragmentTransaction.add(R.id.activity_main, new ExtrasFragment());
@@ -129,4 +143,13 @@ public class MainActivity extends AppCompatActivity {
 		}
 		super.onDestroy();
 	}
+
+    public static void setCoinsCount(){
+
+        Log.e("MemoryApp","Coins Updated :"+ContentHelper.getInstance().getCurrentCoins());
+        coin_text.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
+        coin_text.setTypeface(FontManager.get().getFontChargen());
+
+
+    }
 }

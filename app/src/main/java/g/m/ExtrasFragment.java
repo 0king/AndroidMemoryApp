@@ -76,6 +76,7 @@ public class ExtrasFragment extends Fragment implements View.OnClickListener{
 
 	void resetGame(){
 		//todo kush implement it
+		ContentHelper.getInstance().resetGame();
 		Toast.makeText(getContext(), "Reset", Toast.LENGTH_SHORT).show();
 	}
 

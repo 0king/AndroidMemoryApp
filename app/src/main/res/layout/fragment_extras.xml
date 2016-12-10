@@ -9,27 +9,27 @@
     <Button
         android:text="Reset Game"
         android:id="@+id/reset"
-        style="@style/OptionButtonStyle"/>
+        style="@style/SettingsButtonStyle"/>
 
     <Button
         android:text="Share the App"
         android:id="@+id/share"
-        style="@style/OptionButtonStyle"/>
+        style="@style/SettingsButtonStyle"/>
 
     <Button
         android:text="Rate the App"
         android:id="@+id/rate"
-        style="@style/OptionButtonStyle"/>
+        style="@style/SettingsButtonStyle"/>
 
     <Button
         android:text="Contact Us"
         android:id="@+id/contact"
-        style="@style/OptionButtonStyle"/>
+        style="@style/SettingsButtonStyle"/>
 
     <Button
         android:text="About Us"
         android:id="@+id/about"
-        style="@style/OptionButtonStyle"/>
+        style="@style/SettingsButtonStyle"/>
 
 
 

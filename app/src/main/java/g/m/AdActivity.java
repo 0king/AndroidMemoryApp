@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 /**
@@ -18,25 +19,41 @@ import com.google.android.gms.ads.NativeExpressAdView;
 
 public class AdActivity extends AppCompatActivity {
 
-    Button closeBtn;
-    private AdView ad_view;
+    InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
-       // ContentHelper.getInstance().loadLevelData();
 
-        NativeExpressAdView adview = (NativeExpressAdView)findViewById(R.id.nativeAdView);
-        adview.loadAd(new AdRequest.Builder().addTestDevice("DEB6865817074BF8BC81596532F6D4CB").build());
+        mInterstitialAd = new InterstitialAd(this);
 
-        closeBtn= (Button)findViewById(R.id.button5);
-        closeBtn.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AdActivity.this, PhotoActivity.class));
+        // set the ad unit ID
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_add));
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("DEB6865817074BF8BC81596532F6D4CB")
+                .build();
+
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+
+            public void onAdClosed() {
+
+                startActivity(new Intent(AdActivity.this, ResultActivity.class));
+                finish();
             }
         });
+    }
 
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 }

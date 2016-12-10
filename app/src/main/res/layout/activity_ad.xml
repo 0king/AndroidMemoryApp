@@ -6,22 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.gms.ads.NativeExpressAdView
-        android:id="@+id/nativeAdView"
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/interstitialadView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adSize="400x400"
-        android:gravity="center_horizontal"
-        ads:adUnitId="@string/native_add">
-    </com.google.android.gms.ads.NativeExpressAdView>
-
-    <Button
-        android:text="Close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/adView1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/button5" />
+        ads:adUnitId="@string/interstitial_add">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>

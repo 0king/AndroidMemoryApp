@@ -34,31 +34,10 @@ public class PhotoActivity extends AppCompatActivity {
     ContentHelper server;
     public int current_level;
     TextView mTextField;
-    long timer_passed =0;
-    long timer_count;
-    private static CountDownTimer timer;
+    private CountDownTimer timer_clock;
+    boolean isCancelled = false;
 
-    public void timerStart(long timeLengthMilli) {
-        timer = new CountDownTimer(timeLengthMilli, 500) {
-
-            public void onTick(long millisUntilFinished) {
-                long timeleft = (millisUntilFinished / 1000)+1;
-                mTextField.setText("" + timeleft);
-                ContentHelper.getInstance().setTimeLeft(timeleft);
-                ContentHelper.getInstance().saveLevelData();
-            }
-
-            public void onFinish() {
-
-                ContentHelper.getInstance().setTimeLeft(0);
-                ContentHelper.getInstance().saveLevelData();
-                Intent i = new Intent(PhotoActivity.this, QuestionsActivity.class);
-                startActivity(i);
-            }
-        }.start();
-    }
-
-	@Override
+ 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photo);
@@ -78,14 +57,8 @@ public class PhotoActivity extends AppCompatActivity {
 
 		TextView textInstruction = (TextView) findViewById(R.id.textInstruction);
         mTextField.setTypeface(FontManager.get().getFontDigital());
-		textInstruction.setTypeface(FontManager.get().getFontAfl());
-        mTextField.setTypeface(FontManager.get().getFontDigital());
+		textInstruction.setTypeface(FontManager.get().getFontOxin());
 
-
-        timer_count = PreferenceManager.get().getLong(PreferenceManager.PREF_TIMER_COUNT, 0);
-        if(timer_count == 0){
-            timer_count = 10000;
-        }
 
         //todo pre fetch data
 
@@ -96,13 +69,30 @@ public class PhotoActivity extends AppCompatActivity {
 	/* calling this function so that if a user presses back button while the timer is running, the user will be taken back and timer stops and QuestionsActivity wont load after timeout*/
 	@Override
 	public void onBackPressed() {
-        timer.cancel();
-		super.onBackPressed();
-        //photoHandler.removeCallbacks(photoTimer);
-		//todo stop handler
 
+        //cancelTimer();
+        isCancelled = true;
         startActivity(new Intent(PhotoActivity.this, MainActivity.class));
+        finish();
+        super.onBackPressed();
 	}
+
+
+    @Override
+    public void onStop() {
+        Log.e("MemoryApp","Stopped photo");
+        isCancelled = true;
+        super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        isCancelled = false;
+        startCountDown();
+        //resumeTimer();
+
+    }
 
 
 
@@ -152,7 +142,48 @@ public class PhotoActivity extends AppCompatActivity {
 
 
 
-        timerStart(Math.min(ContentHelper.getInstance().getTimeLeft(),10)*1000);
+       PhotoActivity.this.startCountDown();
+       /* this.timer = new TimerStart((Math.min(ContentHelper.getInstance().getTimeLeft(), 10) * 1000), 500);
+        this.timer.start();*/
+}
 
+    public void startCountDown() {
+
+        this.timer_clock = new CountDownTimer((Math.min(ContentHelper.getInstance().getTimeLeft(), 10) * 1000), 500) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(isCancelled == false) {
+                    long timeleft = (millisUntilFinished / 1000) + 1;
+                    mTextField.setText("" + timeleft);
+                    ContentHelper.getInstance().setTimeLeft(timeleft);
+                    ContentHelper.getInstance().saveLevelData();
+                }else{
+                    cancel();
+                }
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                ContentHelper.getInstance().setTimeLeft(0);
+                ContentHelper.getInstance().saveLevelData();
+                finish();
+                Intent i = new Intent(PhotoActivity.this, QuestionsActivity.class);
+                startActivity(i);
+
+            }
+        }.start();
     }
+
+    public void cancelTimer() {
+        if (this.timer_clock != null) {
+            this.timer_clock.cancel();
+        }
+    }
+/*
+    public void resumeTimer() {
+        startCountDown(ContentHelper.getInstance().getTimeLeft());
+    }
+*/
 }

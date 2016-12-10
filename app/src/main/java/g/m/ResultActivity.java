@@ -38,13 +38,26 @@ public class ResultActivity extends AppCompatActivity {
 		TextView coinsText = (TextView) findViewById(R.id.textCoins);
 		TextView coinsEarned = (TextView) findViewById(R.id.coinsearned);
 		TextView coinsLost = (TextView) findViewById(R.id.coinslost);
-		TextView totalCoins = (TextView) findViewById(R.id.totalCoins);
-        coinsEarned.setText(""+(ContentHelper.getInstance().getCorrectAnswers()*20));
-        coinsLost.setText(""+((3-ContentHelper.getInstance().getCorrectAnswers())*10));
+		//extView totalCoins = (TextView) findViewById(R.id.totalCoins);
+
+		TextView current_level = (TextView) findViewById(R.id.current_level_result);
+		TextView coins_count = (TextView) findViewById(R.id.coin_text_result);
+
+
+        current_level.setText("Case #"+ContentHelper.getInstance().getCurrentLevel());
+        current_level.setTypeface(FontManager.get().getFontDigital());
+
+        coins_count.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
+        coins_count.setTypeface(FontManager.get().getFontChargen());
+
+
+        int correct_anwsers =ContentHelper.getInstance().getCorrectAnswers();
+        coinsEarned.setText(""+(correct_anwsers*20));
+        coinsLost.setText(""+((3-correct_anwsers)*10));
 		coinsText.setTypeface(FontManager.get().getFontDigital());
-		totalCoins.setTypeface(FontManager.get().getFontDigital());
+		//totalCoins.setTypeface(FontManager.get().getFontDigital());
 		next_level.setTypeface(FontManager.get().getFontChargen());
-		main_menu.setTypeface(FontManager.get().getFontAflsolid());
+		main_menu.setTypeface(FontManager.get().getFontChargen());
 		coinsEarned.setTypeface(FontManager.get().getFontDigital());
 		coinsLost.setTypeface(FontManager.get().getFontDigital());
 		toolbarText.setTypeface(FontManager.get().getFontDigital());
@@ -60,7 +73,8 @@ public class ResultActivity extends AppCompatActivity {
 
         //next_level = (Button) findViewById(R.id.button2);
 
-		if((server.getCurrentLevel()) == Constants.total_levels){
+
+		if((server.getCurrentLevel()) == Constants.total_levels || server.getCurrentCoins() < 0){
 			server.resetGame();
             next_level.setVisibility(View.INVISIBLE);
 		}else{
@@ -71,11 +85,19 @@ public class ResultActivity extends AppCompatActivity {
         
         server.saveLevelData();
 
-		next_level.setOnClickListener(new View.OnClickListener() {
+        if(server.getCurrentLevel() % 3 == 0){
+
+            startActivity(new Intent(ResultActivity.this, AdActivity.class));
+            finish();
+        }
+
+
+        next_level.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 				startActivity(new Intent(ResultActivity.this, PhotoActivity.class));
+                finish();
 
 			}
 		});
@@ -86,15 +108,28 @@ public class ResultActivity extends AppCompatActivity {
 			@Override
 			public void onClick(View v) {
 				startActivity(new Intent(ResultActivity.this, MainActivity.class));
+                finish();
 			}
 		});
 	}
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
+
 		Log.e("MemoryApp","Back button pressed");
 
 		startActivity(new Intent(ResultActivity.this, MainActivity.class));
+        finish();
+        super.onBackPressed();
 	}
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

@@ -2,11 +2,14 @@ package g.m;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
@@ -65,10 +68,14 @@ public class QuestionsActivity extends FragmentActivity {
 	//todo remove fragments from stack
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
-        Log.e("MemoryApp","Back button pressed");
 
+        Log.e("MemoryApp","Back button pressed");
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        mFragmentManager.popBackStackImmediate();
+        finish();
         startActivity(new Intent(QuestionsActivity.this, MainActivity.class));
+
+        super.onBackPressed();
     }
 	/*	*//*if (viewPager.getCurrentItem() == 0) {
 			// If the user is currently looking at the first step, allow the system to handle the
@@ -84,6 +91,16 @@ public class QuestionsActivity extends FragmentActivity {
 	 * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
 	 * sequence.
 	 */
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+       super.onResume();
+    }
 
 	//todo use FragmentPagerAdapter
 
@@ -128,7 +145,7 @@ public class QuestionsActivity extends FragmentActivity {
 
     public void changescore(){
 
-        txtview.setText(""+ContentHelper.getInstance().getCurrentCoins());
+        txtview.setText(""+ContentHelper.getInstance().getCurrentCoins()+" ");
         //txtview.setTypeface(FontManager.get().getFontChargen());
     }
 

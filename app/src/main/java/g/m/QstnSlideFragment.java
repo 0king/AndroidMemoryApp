@@ -136,7 +136,7 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
             button.setBackgroundResource(R.drawable.button_rectangle_green);
             int current_coins = ContentHelper.getInstance().getCurrentCoins();
             ContentHelper.getInstance().setCurrentCoins(current_coins+20);
-            int correct_answers = ContentHelper.getInstance().getCurrentCoins();
+            int correct_answers = ContentHelper.getInstance().getCorrectAnswers();
             ContentHelper.getInstance().setCorrectAnswers(correct_answers+1);
         } else {
             Log.e("MemoryApp","Wrong Answer");
@@ -165,4 +165,6 @@ public class QstnSlideFragment extends Fragment implements View.OnClickListener{
 			// Code here
 		}
 	}
+
+
 }

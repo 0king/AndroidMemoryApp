@@ -270,7 +270,7 @@ public class ContentHelper {
         String levelData = PreferenceManager.get().getString(PreferenceManager.PREF_LEVEL_DATA, BuildConfig.FLAVOR);
         String qOrder = PreferenceManager.get().getString(PreferenceManager.PREF_QUESTIONS_ORDER, BuildConfig.FLAVOR);
 
-        this.coinsCount = PreferenceManager.get().getInt(PreferenceManager.PREF_COINS_COUNT, 200);
+        this.coinsCount = PreferenceManager.get().getInt(PreferenceManager.PREF_COINS_COUNT, 100);
         if (BuildConfig.FLAVOR.equals(levelData)) {
             this.timeLeft = 10;
             this.currentQuestion = 1;
@@ -307,7 +307,7 @@ public class ContentHelper {
     public void resetForNextLevel() {
         this.currentLevel++;
         this.timeLeft = 10;
-        this.coinsEarned=0;
+        this.correctAnswers = 0;
         this.currentQuestion = 1;;
         if (this.dataWrapper.getLevels().size() < this.currentLevel - 1) {
            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
@@ -318,11 +318,17 @@ public class ContentHelper {
     public void resetGame() {
         this.currentLevel =1;
         this.timeLeft = 10;
-        this.coinsEarned=0;
+        this.coinsCount=100;
         this.currentQuestion = 1;
         this.correctAnswers = 0;
 
-        this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
+        if (this.dataWrapper.getLevels().size() < this.currentLevel - 1) {
+            this.questionsOrder = Utils.generateShuffledListOfIds(((Level) this.dataWrapper.getLevels().get(this.currentLevel - 1)).getQuestions().size());
+        }
+
+        loadData();
+
+        MainActivity.setCoinsCount();
 
     }
 

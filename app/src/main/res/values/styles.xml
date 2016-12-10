@@ -19,19 +19,29 @@
         <style name="MainTextView" parent="@android:style/TextAppearance">
             <item name="android:layout_width">wrap_content</item>
             <item name="android:layout_height">wrap_content</item>
-            <item name="android:textSize">27dp</item>
+            <item name="android:textSize">20dp</item>
             <item name="android:textColor">@color/textColor</item>
         </style>
 
     <style name="MainOtherButtons">
-        <item name="android:layout_margin">10dp</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="OptionButtonStyle">
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:background">@drawable/buttonshape</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="SettingsButtonStyle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">@drawable/settingsbuttonshape</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">20dp</item>

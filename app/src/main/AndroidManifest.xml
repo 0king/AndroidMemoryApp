@@ -29,17 +29,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:noHistory="true">
+        <activity android:name=".MainActivity">
         </activity>
-        <activity android:name=".AdActivity" android:noHistory="true">
+        <activity android:name=".AdActivity">
         </activity>
-        <activity android:name=".VideoActivity" android:noHistory="true">
+        <activity android:name=".VideoActivity" >
         </activity>
-        <activity android:name=".PhotoActivity" android:noHistory="true">
+        <activity android:name=".PhotoActivity" >
         </activity>
-        <activity android:name=".QuestionsActivity" android:noHistory="true">
+        <activity android:name=".QuestionsActivity" >
         </activity>
-        <activity android:name=".ResultActivity" android:noHistory="true">
+        <activity android:name=".ResultActivity">
         </activity>
         <activity android:name="com.adcolony.sdk.AdColonyInterstitialActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"/>

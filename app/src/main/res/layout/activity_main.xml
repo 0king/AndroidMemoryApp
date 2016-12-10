@@ -17,12 +17,12 @@
     <ImageButton
         android:background="@mipmap/menu37"
         style="@style/MainOtherButtons"
-        android:id="@+id/miscButton"
+        android:id="@+id/settingsBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="20dp" />
         <ImageButton
-            android:background="@mipmap/coin"
+            android:background="@mipmap/moneyyellow35"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:id="@+id/coin"
@@ -56,10 +56,6 @@
         android:gravity="center">
 
         <!-- todo kush bind relevant info -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/level_info"/>
         <!--
                 android:shadowColor="#A8A8A8"
                 android:shadowDx="0"
@@ -69,7 +65,7 @@
 
         <TextView
             style="@style/MainTextView"
-            android:text="Observe the picture"
+            android:text="Test Your Brain Skills"
             android:textAlignment="center"
             android:id="@+id/textView3"/>
         <TextView
@@ -79,32 +75,33 @@
             android:id="@+id/textView4"/>
 
         <ImageView
-            android:layout_weight="2"
+            android:layout_weight="1.73"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:src="@mipmap/mainbraindark"
             android:id="@+id/imageView"/>
 
 
         <Button
-            android:layout_weight="2"
+            android:layout_weight="0.97"
             android:text="PLAY"
             android:id="@+id/startBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:textSize="50sp"
-            android:textColor="@color/textColor"/>
+            android:textColor="@color/textColor"
+            android:elevation="0dp" />
 
 
-        <Button
+        <!--Button
             android:text="FREE COINS "
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Base.Widget.AppCompat.Button.Borderless"
             android:textSize="30sp"
-            android:textColor="@color/textColor"/>
+            android:textColor="@color/textColor"/-->
 
 
         <!-- drawableleft -->
@@ -112,11 +109,16 @@
 
         <!-- android:background="?android:attr/selectableItemBackground" - Doing it this way ensures the button is borderless and the correct size. -->
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/level_info"/>
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ads:adSize="LARGE_BANNER"
+            ads:adSize="BANNER"
             ads:adUnitId="@string/banner_home_footer">
         </com.google.android.gms.ads.AdView>
 

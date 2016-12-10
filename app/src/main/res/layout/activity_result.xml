@@ -13,28 +13,61 @@
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/greendarker"
         android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
+        android:minHeight="60dp"
         android:id="@+id/toolbar_result">
 
-        <LinearLayout
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
 
-            <TextView
-                android:text="LEVEL"
-                android:textSize="20sp"
-                android:textColor="@color/textColor"
-                android:id="@+id/current_level_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-        </LinearLayout>
+
+        <ImageButton
+            android:background="@mipmap/moneyyellow35"
+            android:id="@+id/coin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="false"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/coin_text_result"
+            android:textSize="20sp"
+            android:text="25"
+            android:layout_toStartOf="@+id/coin"
+            android:layout_toLeftOf="@+id/coin"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_marginLeft="20dp"
+            android:layout_alignBottom="@+id/coin"
+            android:layout_alignTop="@+id/coin" />
+
+        <TextView
+            android:textSize="20sp"
+            android:textColor="@color/textColor"
+            android:id="@+id/current_level_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_alignBottom="@+id/coin_text"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="135dp"
+            android:layout_marginStart="135dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dp" />
+
+    </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <TextView
@@ -108,45 +141,31 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:layout_margin="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/textColor"
-        android:gravity="center"
+
+    <Button
         android:layout_gravity="center"
-        android:layout_weight="2"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/textColor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Next Case"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Coins: __"
-        android:id="@+id/totalCoins"
-        android:textSize="35sp"/>
-
-
-        <Button
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            style="@style/Base.Widget.AppCompat.Button.Borderless"
-            android:textColor="@color/textColor"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:text="Next Level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/nextLevel"/>
+        android:id="@+id/nextLevel"/>
 
 
     <!-- todo - remove this button, it is redundant, its task is performed by the back button -->
     <Button
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:textColor="@color/textColor"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_margin="5dp"
         android:text="HOME"
-        android:layout_width="wrap_content"
+        android:layout_width="188dp"
         android:layout_height="wrap_content"
-        android:id="@+id/home"/>
+        android:id="@+id/home"
+        android:paddingBottom="20dp" />
 
     <!-- todo - change banner size -->
 

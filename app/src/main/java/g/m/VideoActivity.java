@@ -33,6 +33,37 @@ package g.m;
             setContentView( R.layout.activity_interstitial );
             progress = (ProgressBar) findViewById( R.id.progress );
 
+
+
+            /** Set up button to show an ad when clicked */
+        }
+
+        @Override
+        protected void onResume()
+        {
+            super.onResume();
+
+            /**
+             * It's somewhat arbitrary when your ad request should be made. Here we are simply making
+             * a request if there is no valid ad available onResume, but really this can be done at any
+             * reasonable time before you plan on showing an ad.
+             */
+            if (ad == null || ad.isExpired())
+            {
+                /**
+                 * Optionally update location info in the ad options for each request:
+                 * LocationManager location_manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+                 * Location location = location_manager.getLastKnownLocation( LocationManager.GPS_PROVIDER );
+                 * ad_options.setUserMetadata( ad_options.getUserMetadata().setUserLocation( location ) );
+                 */
+                progress.setVisibility( View.VISIBLE );
+                AdColony.requestInterstitial( ZONE_ID, listener, ad_options );
+            }
+
+        }
+
+        public void initVideo(){
+
             /** Construct optional app options object to be sent with configure */
             AdColonyAppOptions app_options = new AdColonyAppOptions()
                     .setUserID( "unique_user_id" );
@@ -95,7 +126,7 @@ package g.m;
                 {
                     //show_button.setEnabled( false );
                     progress.setVisibility( View.VISIBLE );
-                   // AdColony.requestInterstitial( ZONE_ID, this, ad_options );
+                    // AdColony.requestInterstitial( ZONE_ID, this, ad_options );
                     Log.d( TAG, "onExpiring" );
                     finish();
                     startActivity(new Intent(VideoActivity.this, MainActivity.class));
@@ -107,31 +138,5 @@ package g.m;
                     startActivity(new Intent(VideoActivity.this, MainActivity.class));
                 }
             };
-
-            /** Set up button to show an ad when clicked */
-        }
-
-        @Override
-        protected void onResume()
-        {
-            super.onResume();
-
-            /**
-             * It's somewhat arbitrary when your ad request should be made. Here we are simply making
-             * a request if there is no valid ad available onResume, but really this can be done at any
-             * reasonable time before you plan on showing an ad.
-             */
-            if (ad == null || ad.isExpired())
-            {
-                /**
-                 * Optionally update location info in the ad options for each request:
-                 * LocationManager location_manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
-                 * Location location = location_manager.getLastKnownLocation( LocationManager.GPS_PROVIDER );
-                 * ad_options.setUserMetadata( ad_options.getUserMetadata().setUserLocation( location ) );
-                 */
-                progress.setVisibility( View.VISIBLE );
-                AdColony.requestInterstitial( ZONE_ID, listener, ad_options );
-            }
-
         }
     }
