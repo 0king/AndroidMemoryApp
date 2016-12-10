@@ -28,11 +28,12 @@ public class EarnCoins extends DialogFragment implements View.OnClickListener { 
         txtMessage.setTypeface(FontManager.get().getFontRegular());
         txtButtonFreeCoins.setTypeface(FontManager.get().getFontRegular());
         txtButtonClose.setTypeface(FontManager.get().getFontRegular());
+        txtButtonFreeCoins.setOnClickListener(this);
+        txtButtonClose.setOnClickListener(this);
 
         return view;
     }
 
-    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.earncoins:

@@ -18,7 +18,7 @@
         android:paddingBottom="10dp" />
 
     <TextView
-        android:text="Need to get more coins to proceed further??"
+        android:text="You want to earn more coins??"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message"
@@ -32,27 +32,29 @@
         android:layout_height="50dp">
 
         <TextView
-            android:text="Cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/cancel"
-            android:paddingLeft="20dp"
-            android:textColor="@color/textColor"
-            android:fontFamily="serif-monospace"
-            android:textSize="19sp" />
-
-        <TextView
             android:text="Earn Coins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/message"
-            android:layout_alignParentEnd="true"
             android:id="@+id/earncoins"
             android:paddingRight="30dp"
             android:textColor="@color/textColor"
             android:textSize="19sp"
-            android:fontFamily="casual" />
+            android:fontFamily="casual"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:paddingLeft="20dp"
+            android:textColor="@color/textColor"
+            android:fontFamily="serif-monospace"
+            android:textSize="19sp"
+            android:layout_alignBottom="@+id/earncoins"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="17dp"
+            android:layout_alignTop="@+id/earncoins" />
     </RelativeLayout>
 </LinearLayout>

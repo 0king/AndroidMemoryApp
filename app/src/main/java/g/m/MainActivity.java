@@ -24,7 +24,7 @@ import g.m.utils.Utils;
 public class MainActivity extends AppCompatActivity {
 
 	public static Button startBtn, earnBtn;
-	ImageButton settingsBtn;
+	ImageButton settingsBtn,coinsButton;
 	private AdView mAdView;
     public static TextView coin_text;
 
@@ -85,21 +85,14 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		});
-/*
-		earnBtn = (Button) findViewById(R.id.button4);
-		earnBtn.setTypeface(FontManager.get().getFontChargen());
-
-		earnBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		});*/
-
-		//FragmentManager fragmentManager = getSupportFragmentManager(); //import android.support.v4.app.FragmentManager;
-		//final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-		//activity_main = (LinearLayout) findViewById(R.id.activity_main);
+        coinsButton = (ImageButton) findViewById(R.id.coin_main);
+        coinsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new EarnCoins().show(getSupportFragmentManager(), "EarnCoins");
+                //finish(); //this method ends the activity
+            }
+        });
         settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
         settingsBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -132,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 		if (mAdView != null) {
 			mAdView.pause();
 		}
+        ContentHelper.getInstance().saveLevelData();
 		super.onPause();
 	}
 

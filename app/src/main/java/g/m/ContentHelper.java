@@ -1,6 +1,7 @@
 package g.m;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -397,5 +398,21 @@ public class ContentHelper {
         }
     }
 
+    public void playCoinsSound(Context context) {
+        if (PreferenceManager.get().getBoolean(PreferenceManager.PREF_SOUND_ENABLED, true)) {
+            MediaPlayer.create(context, R.raw.coins).start();
+        }
+    }
+/*
+    public void coinsAwarded(Context context){
+
+        new RewardCoins().show(getSupportFragmentManager(), "RewardCoins");
+
+        int current_coins = ContentHelper.getInstance().getCurrentCoins();
+        ContentHelper.getInstance().setCurrentCoins(current_coins+50);
+
+        startActivity(new Intent(VideoActivity.this, MainActivity.class));
+    }
+*/
 
 }

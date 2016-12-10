@@ -7,7 +7,8 @@ package g.m.utils;
 public class Constants {
 
     public static final int total_levels=10;
-    
+    public static final String VIDEO_AD_UNIT = "ca-app-pub-5861853391315075/8877159744";
+
 
     public static final String JSON_URL = "https://s3.amazonaws.com/memorytest-contentdelivery-mobilehub-2125031316/data.json";
 

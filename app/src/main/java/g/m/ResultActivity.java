@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -20,6 +21,7 @@ public class ResultActivity extends AppCompatActivity {
 
 	private ContentHelper server;
 	private AdView mAdView;
+    ImageButton coinsButton;
 
 	Button next_level,main_menu;
 	@Override
@@ -116,6 +118,7 @@ public class ResultActivity extends AppCompatActivity {
                 finish();
 			}
 		});
+
 	}
 
 	@Override

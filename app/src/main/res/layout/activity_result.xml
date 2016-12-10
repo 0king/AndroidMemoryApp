@@ -29,7 +29,7 @@
 
         <ImageButton
             android:background="@mipmap/moneyyellow35"
-            android:id="@+id/coin"
+            android:id="@+id/coin_result"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
@@ -44,12 +44,12 @@
             android:id="@+id/coin_text_result"
             android:textSize="20sp"
             android:text="30"
-            android:layout_toStartOf="@+id/coin"
-            android:layout_toLeftOf="@+id/coin"
+            android:layout_toStartOf="@+id/coin_result"
+            android:layout_toLeftOf="@+id/coin_result"
             android:textColor="@android:color/holo_orange_dark"
             android:layout_alignWithParentIfMissing="false"
             android:layout_marginLeft="20dp"
-            android:layout_alignBottom="@+id/coin"
+            android:layout_alignBottom="@+id/coin_result"
             android:layout_alignTop="@+id/coin" />
 
         <TextView

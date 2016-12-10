@@ -25,7 +25,7 @@
             android:background="@mipmap/moneyyellow35"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/coin"
+            android:id="@+id/coin_main"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginRight="20dp"
@@ -39,13 +39,13 @@
             android:id="@+id/coin_text"
             android:textSize="25dp"
             android:text="25"
-            android:layout_toStartOf="@+id/coin"
-            android:layout_toLeftOf="@+id/coin"
+            android:layout_toStartOf="@+id/coin_main"
+            android:layout_toLeftOf="@+id/coin_main"
             android:textColor="@android:color/holo_orange_dark"
             android:layout_alignWithParentIfMissing="false"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
-            android:layout_alignTop="@+id/coin" />
+            android:layout_alignTop="@+id/coin_main" />
 
     </RelativeLayout>
 
